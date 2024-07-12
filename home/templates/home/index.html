@@ -4,14 +4,16 @@
 <body>
     {% include "home/partials/header.html" %}
     {% include "home/partials/menu.html" %}
-    <div class="flex-row">
-        <div class="conteiner item-padding">
-            <main class="content div-padding">
+    <main class="flex-row">
+        <section class="conteiner item-padding">
+            <article class="content div-padding">
                 {% block content %}{% endblock content %}
-            </main>
-            <div class="div-padding">{% include "home/partials/aside.html" %}</div>
-        </div>
-    </div>
+            </article>
+            <div class="div-padding">
+                {% include "home/partials/aside.html" %}
+            </div>
+        </section>
+    </main>
     {% include "home/partials/footer.html" %}
 </body>
 </html>
