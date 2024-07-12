@@ -1,0 +1,24 @@
+{% extends "home/index.html" %}
+{% block content %}
+<table class="table-matricula div-padding">
+    <thead class="table-cabecalho">
+        <tr>
+            <th>matricula</th>
+            <th>Nome</th>
+            <th>data</th>
+        </tr>
+    </thead>
+    <tbody class="table-body">
+        <!--for aqui-->
+        {% for aluno in data %}
+        <tr>
+            <td>{{aluno.matricula}}</td>
+            <td>{{aluno.nome}}</td>
+            <td>{{aluno.data}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+
+
