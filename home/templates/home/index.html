@@ -7,7 +7,49 @@
     <main class="flex-row">
         <section class="conteiner item-padding">
             <article class="content div-padding">
-                {% block content %}{% endblock content %}
+                {% block content %}
+                    <h2 class="item-padding text-center">MON-Arquitetura de Computadores</h2>
+                    <p class="item-padding">Esse site foi criado com o intuito de promover uma melhor iteração entre o monitor e o aluno da respectiva disciplina.</p>
+                    <h3 class="item-padding text-center">Dias da Monitoria</h3>
+                    <ul class = "dias-monitorias">
+                        <li class="italic item-padding">Segunda: 8:00 - 10:00</li>
+                        <li class="italic item-padding">Terça: 8:00 - 10:00</li>
+                        <li class="italic item-padding">Quarta: 8:00 - 10:00</li>
+                        <li class="italic item-padding">Quinta: 8:00 - 10:00</li>
+                        <li class="italic item-padding">Sexta: 8:00 - 10:00</li>
+                    </ul>
+                    <h3 class="item-padding text-center">Possíveis Dúvidas: </h3>
+                    <dl>
+                        <dt class="item-padding">Como posso entrar em contato com o monitor?
+                            <dd>
+                                <h5 class="dd-style item-padding italic">- Você pode entrar em contato com o monitor através do email: meu@email.com ou pelo whatsapp 21-976788321</h5>
+                            </dd>
+                        </dt>
+                        <dt class="item-padding">Onde posso encontrar o monitor?
+                            <dd class=" dd-style item-padding italic">
+                                <h5>- Apenas mediante marcação de horário!</h5>
+                            </dd>
+                        </dt>
+                        <dt class="item-padding">
+                            A monitoria é marcada única e exclusivamente por aqui?
+                            <dd class="dd-style item-padding italic"><h5> - Não, poderá ser realizada a marcação através de outras plataformas.</h5></dd>
+                        </dt>
+                        <dt class="item-padding">
+                            Limite de marcação:
+                            <dd class="dd-style item-padding italic">
+                                <h5>- 5 marcações por dia</h5>
+                            </dd>
+
+                        </dt>
+                        <dt class="item-padding">
+                            Como posso marcar a monitoria?
+                            <dd class="dd-style item-padding italic">
+                                <h5>- Efetue o Login e na mesma aba aprecerá o formulário de marcação, ao marcarserá enviado um email de confirmação para o monitor e outro para o seu e-mail cadastrado.</h5> 
+                            </dd>
+
+                        </dt>
+                    </dl>
+                {% endblock content %}
             </article>
             <div class="div-padding">
                 {% include "home/partials/aside.html" %}

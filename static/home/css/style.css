@@ -51,7 +51,13 @@ html{
 .text-center{
     text-align: center;
 }
-
+.italic{
+    font-style: italic;
+}
+h1, h2, h3 ,h4, h5, h6{
+    z-index: -1;
+    color: var(--blue);
+}
 
 @media all{    
 /*Menu*/
@@ -88,7 +94,6 @@ html{
 
 .content{
     display: flex;
-    justify-content: center;
     flex-direction: column;
 }
 .table-matricula{
@@ -103,6 +108,13 @@ html{
 .table-matricula td, th{
     border-bottom: .2rem solid var(--blue);
     padding: 0.8rem;
+}
+.dias-monitorias{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    list-style: none;
+    text-align: center;
 }
 
 /*Aside*/
