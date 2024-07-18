@@ -2,6 +2,7 @@
     <ul class="menu flex-row">
         <li class="item-menu"><a href="{% url 'home:home' %}">Home</a></li>
         <li class="item-menu"><a href="{% url 'home:monitorias' %}">Monitorias</a></li>
-        <li class="item-menu"><a href="#">Contatos</a></li>
+        <li class="item-menu"><a href="{% url "home:dados" %}">Dados</a></li>
+        <li class="item-menu"><a href="{% url "home:cadastro" %}">Cadastro</a></li>
     </ul>
 </nav>

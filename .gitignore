@@ -50,7 +50,8 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
-
+static_files
+media_files
 # Translations
 *.mo
 *.pot

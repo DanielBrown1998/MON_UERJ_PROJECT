@@ -144,10 +144,12 @@ data = [
       },
 
 ]
+horario = []
 
 def index(request):
     context = {
-        'title': 'Home'
+        'title': 'Home',
+        'horas': horario
     }
     url = 'home/index.html'
     return render(request, url, context=context)
@@ -158,4 +160,19 @@ def monitoria(request):
         'data': data,
         }
     url = 'home/monitorias.html'
+    return render(request, url, context=context)
+
+def dados(request):
+    context = {
+        'title': 'Data',
+        'data': data,
+    }
+    url = 'home/data.html'
+    return render(request, url, context=context)
+
+def cadastro(request):
+    context = {
+        'title': 'Cadastro',
+    }
+    url = 'home/cadastro.html'
     return render(request, url, context=context)
