@@ -1,5 +1,8 @@
 @charset "utf-8";
 /*Geral*/ 
+
+@media all{    
+/*Menu*/
 *{
     margin: 0;
     padding: 0;
@@ -8,12 +11,20 @@
 }
 
 :root{
+--pink: #BF1F3C;
 --red: #D90718;
 --blue: #092140;
 --white: #F2F2EB;
+--black: #181818d7;
+--blue-light: #0367A6;
 }
 html{
     font-family: 1rem;
+}
+
+.display-stick-bottom{
+    position: sticky;
+    bottom: 0;
 }
 
 .display-stick-top{
@@ -33,6 +44,10 @@ html{
     background-color: var(--blue);
     color: var(--white);
 }
+.background-white{
+    background-color: var(--white);
+    color: var(--blue);
+}
 
 .background-red{
     background-color: var(--red);
@@ -48,6 +63,23 @@ html{
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.flex-row-space-between{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 400px;
+    width: 30vw;
+    max-width: 700px;
+}
+.flex-row-space-around{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: 400px;
+    width: 30vw;
+    max-width: 700px;
 }
 .flex-row-start{
     display: flex;
@@ -67,31 +99,48 @@ html{
     font-style: italic;
 }
 h1, h2, h3 ,h4, h5, h6{
-    z-index: -1;
     color: var(--blue);
 }
 
-@media all{    
-/*Menu*/
-
+.form-cadastro{
+    text-align: center;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--blue);
+    color: var(--blue);    
+    font-weight: 700;
+    font-style: oblique;
+    
+}
 .menu{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 20px;
     background-color: var(--blue);
+    z-index: 1;
+    min-height: 50px;
+    height: 5vh;
+    max-height: 100px;
 }
 .item-menu{
     list-style: none;
 }
 .item-menu a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    height: 5vh;
+    max-height: 100px;
     text-decoration: none;
     color: var(--white);
     font-weight: bold;
 }
 .item-menu a:hover{
     color: var(--red);
-    transition: all linear 300ms;
+    border-bottom: 5px solid var(--white);
+    transition: color linear 300ms;
 }
 
 /*Conteiner*/
@@ -106,7 +155,7 @@ h1, h2, h3 ,h4, h5, h6{
 
 .content{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
 .table-matricula{
     text-align: center;
@@ -128,6 +177,7 @@ h1, h2, h3 ,h4, h5, h6{
     list-style: none;
     text-align: center;
 }
+
 
 /*Aside*/
 
@@ -153,6 +203,12 @@ h1, h2, h3 ,h4, h5, h6{
 .legend{
     font-weight: bold;
     color: var(--blue);
+    text-align: left;
+}
+.legend-cadastro{
+    font-weight: bold;
+    color: var(--blue);
+    text-align: left;
 }
 .btn-send{
     background-color: var(--blue);

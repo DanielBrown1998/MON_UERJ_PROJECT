@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class DataUser(User):
+class DataUser(models.Model):
 
     class Meta:
         verbose_name = 'Usuário'
         verbose_name_plural = 'Usuários'
-
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     monitorias_marcadas = models.IntegerField(default=0)        
     monitorias_presentes = models.IntegerField(default=0)
     
@@ -19,10 +19,10 @@ class DataUser(User):
 class Monitorias(models.Model):
     
     date = models.DateField()
-    username = models.ForeignKey(DataUser, on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name_plural = "Monitorias"
-        unique_together = ('date', 'username'),
+        unique_together = ('date', 'owner'),
 
  
