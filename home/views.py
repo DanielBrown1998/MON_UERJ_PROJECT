@@ -32,6 +32,14 @@ def dados(request):
     url = 'home/data.html'
     return render(request, url, context=context)
 
+def config(request):
+    context = {
+        'title': 'Configuração',
+    }
+    url = 'home/config.html'
+    return render(request, url, context=context)
+
+
 def cadastro(request):
     context = {
         'title': 'Cadastro',

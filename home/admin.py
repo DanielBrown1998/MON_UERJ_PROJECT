@@ -21,3 +21,14 @@ class DataUserAdmin(admin.ModelAdmin):
     list_per_page = 10
     list_max_show_all = 60
     list_editable = 'monitorias_presentes',
+
+@admin.register(models.Days)
+class DaysAdmin(admin.ModelAdmin):
+    list_display = ('day',)
+    list_filter = 'day',
+
+
+@admin.register(models.Horas)
+class HorasAdmin(admin.ModelAdmin):
+    list_display = ('time', 'day',)
+    list_filter = 'day',
