@@ -8,15 +8,23 @@
             <article class="content div-padding">
                 {% block content %}
                     <div class="flex-column">
-                        <h2 class="item-padding text-center">MON-Arquitetura de Computadores</h2>
-                        <p class="item-padding">Esse site foi criado com o intuito de promover uma melhor iteração entre o monitor e o aluno da respectiva disciplina.</p>
-                        <h3 class="item-padding text-center">Dias da Monitoria</h3>
+                        <h2 class="item-padding text-center">
+                            MON-Arquitetura de Computadores
+                        </h2>
+                        <p class="item-padding">
+                            Esse site foi criado com o intuito de promover uma melhor iteração entre o monitor e o aluno da respectiva disciplina.
+                        </p>
+                        <h3 class="item-padding text-center">
+                            Dias da Monitoria
+                        </h3>
                         <ul class = "dias-monitorias">
-                            <li class="italic item-padding">Segunda: 8:00 - 10:00</li>
-                            <li class="italic item-padding">Terça: 8:00 - 10:00</li>
-                            <li class="italic item-padding">Quarta: 8:00 - 10:00</li>
-                            <li class="italic item-padding">Quinta: 8:00 - 10:00</li>
-                            <li class="italic item-padding">Sexta: 8:00 - 10:00</li>
+                            {% for item in horarios %}
+                                <li class="italic item-padding">{{item.dayweek}}: 
+                                    {{item.time_start}} -> {{item.time_final}}
+                                </li>
+                            {% endfor %}
+                            
+                            
                         </ul>
                         <h3 class="item-padding text-center">Possíveis Dúvidas: </h3>
                         <dl>

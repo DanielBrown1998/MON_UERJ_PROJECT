@@ -32,17 +32,15 @@ class Days(models.Model):
         verbose_name = "Dia"
         verbose_name_plural = "Dias"
 
-
     day = models.CharField(max_length=20)
+
 
 class Horas(models.Model):
 
     class Meta:
         verbose_name = "Hora"
         verbose_name_plural = "Horas"
-        unique_together = ('day', 'time')
+        unique_together = 'time', 'day'
 
     time = models.TimeField()
     day = models.ForeignKey(Days, on_delete=models.CASCADE)
-
-
