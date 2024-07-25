@@ -1,21 +1,15 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from home.models import User
-# Create your views here.
-
-
 from datetime import datetime
+
 
 horarios = []
 def index(request):
-    from home.models import Horas
+    from home.models import Horas, DataUser
     horarios = Horas.objects.all()
-
     weekday = {}
-    data = [
-        {"hora": item.time, 'day': item.day.day} 
-        for item in horarios
-        ]
+    data = [{"hora": item.time, 'day': item.day.day} for item in horarios]
     for item in data:
         if item['day'] not in weekday.keys():
             weekday[item['day']] = [item['hora']]
@@ -26,7 +20,7 @@ def index(request):
 
     context = {
         'title': 'Home',
-        'horarios': data
+        'horarios': data,
     }
 
     url = 'home/index.html'
@@ -34,37 +28,32 @@ def index(request):
 
 def monitoria(request):
     from home.models import Monitorias
-    contacts = Monitorias.objects.all()
+    contacts = Monitorias.objects.all().order_by('-date')
     data = [
-        {'matricula': item.owner.username, 'nome': f"{item.owner.first_name} {item.owner.last_name}", "data": item.date} 
-        for item in contacts
+        {'matricula': item.owner.username, 'nome': f"{item.owner.first_name} {item.owner.last_name}", "data": item.date} if item.date >= datetime.date(datetime.now())
+        else None
+        for item in contacts 
     ]
     context = {
         'title': 'Monitoria',
-        'data': data,
+        'data': [item for item in data if item is not None],
         }
     url = 'home/monitorias.html'
     return render(request, url, context=context)
 
 def dados(request):
+
     context = {
-        'title': 'Data',
+        'title': 'Estatísticas',
         'data': [],
     }
     url = 'home/data.html'
     return render(request, url, context=context)
 
-def config(request):
+def update(request):
+    from home.models import DataUser
     context = {
-        'title': 'Configuração',
+        'title': 'Update',
     }
-    url = 'home/config.html'
-    return render(request, url, context=context)
-
-
-def cadastro(request):
-    context = {
-        'title': 'Cadastro',
-    }
-    url = 'home/cadastro.html'
+    url = 'home/update.html'
     return render(request, url, context=context)

@@ -7,6 +7,5 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('monitorias/', views.monitoria, name='monitorias'),
     path('data/', views.dados, name='dados'),
-    path('config/', views.config, name = 'config'),
-    path('cadastro/', views.cadastro, name='cadastro'),
+    path('udpate/', views.update, name='update'),
 ]
