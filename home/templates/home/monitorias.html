@@ -1,24 +1,32 @@
 {% extends "home/index.html" %}
 {% block content %}
-<table class="table-matricula div-padding">
-    <thead class="table-cabecalho">
-        <tr>
-            <th>matricula</th>
-            <th>Nome</th>
-            <th>data</th>
-        </tr>
-    </thead>
-    <tbody class="table-body">
-        <!--for aqui-->
-        {% for aluno in data %}
-        <tr>
-            <td>{{aluno.matricula}}</td>
+<div class="flex-column-space-around">
+    <div class="div-search border-white div-padding">
+        <form action="{% url "home:search" %}" method="GET">
+            <input type="text" name="q" id="search" class="form-search item-padding"
+            placeholder="Search-(matrícula)" required autocomplete="off">
+        </form>
+    </div>
+    <table class="table-matricula div-padding">
+        <thead class="table-cabecalho">
+            <tr>
+                <th>matricula</th>
+                <th>Nome</th>
+                <th>data</th>
+            </tr>
+        </thead>
+        <tbody class="table-body">
+            <!--for aqui-->
+            {% for aluno in data %}
+            <tr>
+                <td>{{aluno.matricula}}</td>
             <td>{{aluno.nome}}</td>
             <td>{{aluno.data}}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+</div>
 {% endblock content %}
 
 
