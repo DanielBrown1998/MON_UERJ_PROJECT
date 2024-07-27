@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from home.models import User
 from datetime import datetime
@@ -30,16 +30,40 @@ def monitoria(request):
     from home.models import Monitorias
     contacts = Monitorias.objects.all().order_by('-date')
     data = [
-        {'matricula': item.owner.username, 'nome': f"{item.owner.first_name} {item.owner.last_name}", "data": item.date} if item.date >= datetime.date(datetime.now())
-        else None
+        {'matricula': item.owner.username, 'nome': f"{item.owner.first_name} {item.owner.last_name}", "data": item.date} 
+        #if item.date >= datetime.date(datetime.now())
+        #else None
         for item in contacts 
     ]
     context = {
         'title': 'Monitoria',
-        'data': [item for item in data if item is not None],
+        'data': data #[item for item in data if item is not None],
         }
     url = 'home/monitorias.html'
     return render(request, url, context=context)
+
+def search(request):
+    from home.models import Monitorias
+
+    search_value = request.GET.get('q', '').strip()
+    if search_value == '':
+        return redirect('home:monitorias')
+    contacts = Monitorias.objects.filter(owner__username__icontains=search_value).order_by('-date')
+
+    data = [
+        {'matricula': item.owner.username, 'nome': f"{item.owner.first_name} {item.owner.last_name}", "data": item.date} 
+        #if item.date >= datetime.date(datetime.now())
+        #else None
+        for item in contacts 
+    ]
+    context = {
+        'title': 'Monitoria',
+        'data': data #[item for item in data if item is not None],
+        }
+    url = 'home/monitorias.html'
+    return render(request, url, context=context)
+    
+
 
 def dados(request):
 
@@ -56,4 +80,12 @@ def update(request):
         'title': 'Update',
     }
     url = 'home/update.html'
+    return render(request, url, context=context)
+
+def config(request):
+    from home.models import DataUser, Days, Horas, User, Monitorias
+    context = {
+        'title': 'Configurações',
+    }
+    url = 'home/config.html'
     return render(request, url, context=context)
