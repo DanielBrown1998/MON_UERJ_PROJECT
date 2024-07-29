@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from home.models import User
 from datetime import datetime
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 horarios = []
 def index(request):
@@ -64,7 +65,8 @@ def search(request):
     ]
     context = {
         'title': 'Monitoria',
-        'data': data #[item for item in data if item is not None],
+        'data': data, #[item for item in data if item is not None],
+        'search': search_value,
         }
     url = 'home/monitorias.html'
     return render(request, url, context=context)

@@ -4,9 +4,10 @@
     <div class="div-search border-white div-padding">
         <form action="{% url "home:search" %}" method="GET">
             <input type="text" name="q" id="search" class="form-search item-padding"
-            placeholder="Search" required autocomplete="off">
+            placeholder="Search" autocomplete="off" value="{{search}}">
         </form>
     </div>
+    {% if data %}
     <table class="table-matricula div-padding">
         <thead class="table-cabecalho">
             <tr>
@@ -20,13 +21,17 @@
             {% for aluno in data %}
             <tr>
                 <td>{{aluno.matricula}}</td>
-            <td>{{aluno.nome}}</td>
-            <td>{{aluno.data}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                <td>{{aluno.nome}}</td>
+                <td>{{aluno.data}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="text-center table-matricula div-padding">Nenhuma monitoria encontrada</p>
+    {% endif %}
 </div>
+
 {% endblock content %}
 
 
