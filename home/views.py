@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from home.models import User
 from datetime import datetime
-
+from django.db.models import Q
 
 horarios = []
 def index(request):
@@ -19,7 +19,7 @@ def index(request):
     data = [{"dayweek": key, "time_start": str(value[0]), "time_final": str(value[-1])} for key, value in weekday.items()]
 
     context = {
-        'title': 'Home',
+        'title': 'HOME',
         'horarios': data,
     }
 
@@ -48,8 +48,14 @@ def search(request):
     search_value = request.GET.get('q', '').strip()
     if search_value == '':
         return redirect('home:monitorias')
-    contacts = Monitorias.objects.filter(owner__username__icontains=search_value).order_by('-date')
-
+    contacts = Monitorias.objects\
+        .filter(
+            Q(owner__username__icontains=search_value) | 
+            Q(owner__first_name__icontains=search_value) |
+            Q(owner__last_name__icontains=search_value)
+            )\
+        .order_by('-date')
+    
     data = [
         {'matricula': item.owner.username, 'nome': f"{item.owner.first_name} {item.owner.last_name}", "data": item.date} 
         #if item.date >= datetime.date(datetime.now())
