@@ -29,29 +29,18 @@ def index(request):
 
 def monitoria(request):
     from home.models import Monitorias
-    num_items = request.GET.get('num_items')
-    order_items = request.GET.get('order_items')
-    if order_items != 'date' and order_items is not None:
-        contacts = Monitorias.objects.all().order_by(f'owner__{order_items}')
-    else:
-        contacts = Monitorias.objects.all().order_by('-date')
+    contacts = Monitorias.objects.all().order_by('-date')
 
-    print(num_items, order_items)
     data = [
         {'matricula': item.owner.username, 'nome': f"{item.owner.first_name} {item.owner.last_name}", "data": item.date} 
-        #if item.date >= datetime.date(datetime.now())
-        #else None
         for item in contacts 
     ]
-    if num_items:
-        paginator = Paginator(data, int(num_items))
-    else:
-        paginator = Paginator(data, 10)
+    paginator = Paginator(data, 10)
     page_number = request.GET.get("page")
     data = paginator.get_page(page_number)
     context = {
         'title': 'Monitoria',
-        'data': data, #[item for item in data if item is not None],
+        'data': data,
         }
     url = 'home/monitorias.html'
     return render(request, url, context=context)
@@ -85,9 +74,11 @@ def search(request):
 
 
     data = [
-        {'matricula': item.owner.username, 'nome': f"{item.owner.first_name} {item.owner.last_name}", "data": item.date} 
-        #if item.date >= datetime.date(datetime.now())
-        #else None
+        {
+            'matricula': item.owner.username, 
+            'nome': f"{item.owner.first_name} {item.owner.last_name}", 
+            "data": item.date
+        }
         for item in contacts 
     ]
     if num_items:
@@ -99,7 +90,7 @@ def search(request):
     
     context = {
         'title': 'Monitoria',
-        'data': data, #[item for item in data if item is not None],
+        'data': data,
         'search': search_value,
         }
     url = 'home/monitorias.html'

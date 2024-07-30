@@ -178,8 +178,8 @@ h1, h2, h3 ,h4, h5, h6{
 
 .div-search{
     display: flex;
-    justify-content: space-around;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-color: var(--white);  
     margin-bottom: 2vh; 
