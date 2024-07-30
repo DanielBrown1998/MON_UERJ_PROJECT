@@ -6,19 +6,36 @@
             <input type="text" name="q" id="search" class="form-search item-padding"
             placeholder="Search" autocomplete="off" value="{{search}}">
         </div>
-        <div class="flex-row-space-around">
-            <p>Filtros: </p>
-            <select name="num_items" id="num-items">
-                <option value="10"><p class="">10</p></option>
-                <option value="5"><p class="">5</p></option>
-                <option value="20"><p class="">20</p></option>
-            </select>
-            <select name="order_items" id="order_items">
-                <option value="date" ><p class="">Data</p></option>
-                <option value="username"><p class="">Matricula</p></option>
-                <option value="first_name"><p class="">Nome</p></option>
-            </select>
-            <input type="submit" value="filtrar">
+        <div class="flex-row">
+            <div class="flex-row-space-between">
+                
+                <select name="num_items" id="num-items" 
+                class="border-white font-select">
+                    <option class="font-select" value="10">
+                        <p>10</p>
+                    </option>
+                    <option class="font-select" value="5">
+                        <p>5</p>
+                    </option>
+                    <option class="font-select" value="20">
+                        <p>20</p>
+                    </option>
+                </select>
+                
+                <select name="order_items" id="order_items" 
+                class="border-white font-select">
+                    <option class="font-select" value="date">
+                        <p>Data</p>
+                    </option>
+                    <option class="font-select" value="username">
+                        <p>Matricula</p>
+                    </option>
+                    <option class="font-select" value="first_name">
+                        <p>Nome</p>
+                    </option>
+                </select>
+                <input type="submit" value="&rarr;" class="btn-select">
+            </div>
         </div>
     </form>
     {% if data %}
