@@ -11,11 +11,11 @@
                 
                 <select name="num_items" id="num-items" 
                 class="border-white font-select">
-                    <option class="font-select" value="10">
-                        <p>10</p>
-                    </option>
                     <option class="font-select" value="5">
                         <p>5</p>
+                    </option>
+                    <option class="font-select" value="10" selected>
+                        <p>10</p>
                     </option>
                     <option class="font-select" value="20">
                         <p>20</p>
@@ -24,7 +24,7 @@
                 
                 <select name="order_items" id="order_items" 
                 class="border-white font-select">
-                    <option class="font-select" value="date">
+                    <option class="font-select" value="date" selected>
                         <p>Data</p>
                     </option>
                     <option class="font-select" value="username">
@@ -58,11 +58,15 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div class="pagination">
-            <span class="step-links">
+        <div class="flex-row">
+            {% if data.has_previous and data.has_next %}
+                <span class="flex-row-space-evenly">
+            {% else %}
+                <span>
+            {% endif %}
                 {% if data.has_previous %}
                     <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ data.previous_page_number }}">previous</a>
+                    <a href="?page={{ data.previous_page_number }}" class="next-previous">previous</a>
                 {% endif %}
         
                 <span class="current">
@@ -70,7 +74,7 @@
                 </span>
         
                 {% if data.has_next %}
-                    <a href="?page={{ data.next_page_number }}">next</a>
+                    <a href="?page={{ data.next_page_number }}" class="next-previous">next</a>
                     <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
                 {% endif %}
             </span>
