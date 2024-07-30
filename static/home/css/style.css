@@ -252,6 +252,7 @@ option{
     min-width: 350px;
     width: 40vw;
     max-width: 600px;
+    margin-top: 2vh;
 }
 
 .table-matricula tr td th{

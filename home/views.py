@@ -51,7 +51,7 @@ def search(request):
     num_items = request.GET.get('num_items')
     order_items = request.GET.get('order_items')
     search_value = request.GET.get('q', '').strip()
-    if search_value == '':
+    if search_value == '' and num_items == '10' and order_items == 'date':
         return redirect('home:monitorias')
 
     if order_items != 'date' and order_items is not None:
