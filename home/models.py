@@ -2,6 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Matriculas(models.Model):
+    
+    class Meta:
+        verbose_name = 'Matrícula'
+        verbose_name_plural = 'Matrículas'
+
+    matricula = models.CharField(max_length=10, unique=True)
+
+
+
 # Create your models here.
 class DataUser(models.Model):
 

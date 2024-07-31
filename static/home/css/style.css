@@ -221,7 +221,6 @@ select{
 select:hover{
     background-color: var(--gray);
     color: var(--white);
-    transform: scale(1.1, 1.1);
     transition: all 300ms ease-in-out;
 }   
 option{
