@@ -1,9 +1,11 @@
 {% load static %}
 <aside class="info div-padding">
     <div class="div-logo flex-row ">
-        <a href="#" target="_blank"><img src="{% static 'home/images/logomarca-uerj.png' %}" alt="logo da uerj" class='logo'></a>
+        <a href="#" target="_blank">
+            <img src="{% static 'home/images/logomarca-uerj.png' %}" alt="logo da uerj" class='logo'>
+        </a>
     </div>
-    <div class="monitoria">
+    <div>
         <form action="" class=" div-padding flex-column" method="POST">
             {% csrf_token %}
             <label for="matricula" class="flex-column item-padding">

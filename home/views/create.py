@@ -9,5 +9,11 @@ def create(request):
     context = {
         'title': 'Create',
     }
+
+    matricula = request.POST.get('matricula', '').strip()
+    if matricula:
+        #aqui será realizado o salvamento da matricula na tabela matrícula
+        print(matricula)
+
     url = 'home/create.html'
     return render(request, url, context=context)

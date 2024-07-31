@@ -8,8 +8,8 @@ from django.core.paginator import Paginator
 def search(request):
     from home.models import Monitorias
 
-    num_items = request.GET.get('num_items')
-    order_items = request.GET.get('order_items')
+    num_items = request.GET.get('num_items', 10)
+    order_items = request.GET.get('order_items', 'date')
     search_value = request.GET.get('q', '').strip()
     if search_value == '' and num_items == '10' and order_items == 'date':
         return redirect('home:monitorias')
@@ -41,10 +41,7 @@ def search(request):
         }
         for item in contacts 
     ]
-    if num_items:
-        pagination = Paginator(data, int(num_items))
-    else:
-        pagination = Paginator(data, 10)
+    pagination = Paginator(data, int(num_items))
     page_number = request.GET.get("page")
     data = pagination.get_page(page_number)
     
