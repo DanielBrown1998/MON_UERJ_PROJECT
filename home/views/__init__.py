@@ -1,5 +1,5 @@
 from home.views.config import *
-from home.views.create import *
+from home.views.matricula import *
 from home.views.dados import *
 from home.views.index import *
 from home.views.monitoria import *

@@ -1,14 +1,14 @@
 {% extends "home/index.html" %}
 {% block content %}
     <div class="flex-column">
-        <a href="{% url 'home:create' %}" 
+        <a href="{% url 'home:matricula' %}" 
         class='btn-select a-rodape item-padding margin-top-bottom'>
-        ADD MATRÍCULA</a>
+        AUTORIZAR MATRÍCULAS</a>
         <a href="{% url 'home:dados' %}" 
         class='btn-select a-rodape item-padding margin-top-bottom'>
         DADOS ESTATÍSTICOS</a>
         <div class="div-search border-white div-padding">
-            <form action="{% url 'home:config' %}" method="get">
+            <form action="{% url 'home:search_config' %}" method="get">
                 <input type="text" name="q" id="search" class="form-search item-padding"
                 placeholder="Search" autocomplete="off" value="{{search}}">
             </form>
@@ -19,8 +19,8 @@
                     <tr>
                         <th>matricula</th>
                         <th>nome</th>
-                        <th>marcada</th>
-                        <th>presente</th>
+                        <th>mark</th>
+                        <th>pres</th>
                         <th>atualizar</th>
                     </tr>
                 </thead>
@@ -72,7 +72,7 @@
 {% block aside %}
     <div class="info div-padding">
         <h2 class="text-center item-padding legend">Dias da semana: </h2>
-        <form action="" method="post" class="flex-column">
+        <form action="" method="post" class="flex-column border-white item-padding">
             {% for day in daysweek %}
                 {% csrf_token %}
                 <label for="{{day}}" class="flex-row-info item-padding">
@@ -80,11 +80,24 @@
                     {% if day in days %}
                         <input type="checkbox" name="{{day}}" id="{{day}}"  value="{{day}}" checked>
                     {% else %}
-                    <input type="checkbox" name="{{day}}" value="{{day}}" id="{{day}}">
+                        <input type="checkbox" name="{{day}}" value="{{day}}" id="{{day}}">
                     {% endif %}
                 </label>
             {% endfor %}
-            <input type="button" value="marcar" class="btn-send">
+            <input type="button" value="definir" class="btn-send">
+        </form>
+        <h2 class="text-center item-padding legend">Horas: </h2>
+        <form action="" method="post" class="flex-column border-white item-padding">
+            <select class="hora" name="daysweek" id="daysweek">
+                {% for day in daysweek %}
+                    <option value="{{day}}">
+                        {{day}}
+                    </option>
+                {% endfor %}
+            </select>
+            <input type="time" name="time_start" id="time_start" required>
+            <input type="time" name="time_end" id="time_end" required>
+            <input type="button" value="definir" class="btn-send">
         </form>
     </div>
 {% endblock aside %}

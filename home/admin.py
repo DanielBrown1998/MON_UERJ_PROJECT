@@ -4,6 +4,11 @@ from home import models
 
 # Register your models here.
 
+@admin.register(models.Matriculas)
+class MatriculasAdmin(admin.ModelAdmin):
+    list_display = ('matricula',)
+
+
 @admin.register(models.Monitorias)
 class MonitoriasAdmin(admin.ModelAdmin):
     list_display = 'date', 'owner',

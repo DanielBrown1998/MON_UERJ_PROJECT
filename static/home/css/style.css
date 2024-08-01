@@ -123,6 +123,11 @@ html{
     border: 1px solid var(--white);
     border-radius: 1vh;
 }
+.border-black{
+    border: 1px solid var(--black);
+    border-radius: 1vh;
+}
+
 .text-center{
     text-align: center;
 }
@@ -219,6 +224,8 @@ select{
     border: none;
     background-color: var(--white);
     min-width: 100px;
+    width: 10vw;
+    max-width: 200px;
     color: var(--blue-light);
     appearance: none;
 }
@@ -227,10 +234,17 @@ select:hover{
     color: var(--white);
     transition: all 300ms ease-in-out;
 }   
-option{
+
+select.hora{
+    outline: none;
+    border-bottom: 1px solid var(--white);
+    background-color: var(--blue);
+    color: var(--white);
+    font-weight: 700;
+    width: 10vw;
+    min-width: 120px;
+    max-width: 300px;
     text-align: center;
-    text-decoration: none;
-    text-shadow: var(--blue);
 }
 
 .font-select{
@@ -329,6 +343,13 @@ span a:not(a.next-previous){
     display: flex;
     flex-direction: column;
 }
+.flex-row-info{
+    display: flex;
+    justify-content: space-between;
+    max-width: 250px;
+    width: 15vw;
+    min-width: 150px;
+}
 .div-logo{
     display: flex;
 }
@@ -382,6 +403,22 @@ span a:not(a.next-previous){
     color: var(--white);
     transition: all ease-out 300ms;
 }
+
+
+input[type="time"]{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    color: var(--white);
+    text-align: center;
+    font-weight: 500;
+    font-style: oblique;
+    outline: none;
+    border: none;
+    width: 4vw;
+    max-width: 200px;
+    min-width: 100px;
+}
+
 
 /*Footer*/
 .rodape{
@@ -445,16 +482,8 @@ span a:not(a.next-previous){
         background-color: var(--blue);
         color: var(--white);
     }
-    .flex-row-info{
-        display: flex;
-        justify-content: space-between;
-        max-width: 250px;
-        width: 15vw;
-        min-width: 150px;
-    }
     .legend{
         color: var(--white);
-
     }
     .btn-send{
         background-color: var(--white);
@@ -512,12 +541,19 @@ span a:not(a.next-previous){
         position: sticky;
         top: 8vh;
         max-width: 300px;
-        width: 20vw;
+        width: 22vw;
         min-width: 200px;
         border: 1px solid var(--white);
         border-radius: 1vw;
         background-color: var(--blue);
         color: var(--white);
+    }
+    .flex-row-info{
+        display: flex;
+        justify-content: space-between;
+        max-width: 250px;
+        width: 15vw;
+        min-width: 150px;
     }
     .legend{
         color: var(--white);

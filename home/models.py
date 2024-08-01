@@ -8,7 +8,7 @@ class Matriculas(models.Model):
         verbose_name = 'Matrícula'
         verbose_name_plural = 'Matrículas'
 
-    matricula = models.CharField(max_length=10, unique=True)
+    matricula = models.CharField(max_length=12, unique=True)
 
 
 

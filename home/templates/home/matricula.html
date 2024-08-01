@@ -1,0 +1,55 @@
+{% extends "home/index.html" %}
+{% block content %}
+<div class="flex-column">
+    <div class="flex-row">
+        <div class="flex-column border-black margin-top-bottom">
+            <h2 class="flex-row div-padding">CREATE</h2>
+            <form method="POST" class="flex-column div-padding" action="{% url 'home:create' %}">
+                {% csrf_token %}
+                <label for="primeiro-nome" class="flex-row-space-evenly item-padding">
+                    <p class="legend-cadastro">Matricula:</p>
+                    <input type="text" id="primeiro-nome" name="matricula" class="form-cadastro" required>
+                </label>
+                <div class="flex-row-space-around item-padding">
+                    <input type="submit" value="Cadastrar" class="btn-send">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="flex-row">
+        <div class="flex-column border-black margin-top-bottom">
+            <h2 class="flex-row div-padding">UDPATE</h2>
+            <form method="POST" class="flex-column div-padding" action="{% url 'home:update_matricula' %}">
+                {% csrf_token %}
+                <select name="matricula_antiga_id" id="matricula">
+                    {% for matricula in matriculas %}
+                        <option value="{{matricula.id}}">
+                            {{matricula.matricula}}
+                        </option>
+                    {% endfor %}
+                </select>
+                <label for="primeiro-nome" class="flex-row-space-evenly item-padding">
+                    <p class="legend-cadastro">Nova Matricula:</p>
+                    <input type="text" id="primeiro-nome" name="matricula_nova" class="form-cadastro" required maxlength="12">
+                </label>
+                <div class="flex-row-space-around item-padding">
+                    <input type="submit" value="Atualizar" class="btn-send">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block aside %}
+    <div class="info div-padding">
+        <p class="legend item-padding">Aqui você pode:</p>
+
+        <p class="legend item-padding"> - viabilizar a criação da conta ao add. a matrícula!</p>
+        
+        <p class="legend item-padding">- atualizar a matricula!</p>
+
+        <p class="legend item-padding"s>- deletar a matricula!</p>
+
+    </div>
+{% endblock aside %}
+
