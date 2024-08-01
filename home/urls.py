@@ -16,6 +16,7 @@ urlpatterns = [
     path('data/', views.dados, name='dados'),
     path('config/', views.config, name='config'),
     path('config/search/', views.search_config, name='search_config'),
+    path('config/update-monitoria/', views.update_monitorias, name='update_monitorias'),
     path('config/matricula/', views.matricula, name='matricula'),
     path('config/matricula/create', views.create, name='create'),
     path('config/matricula/update', views.update_matricula, name='update_matricula'),

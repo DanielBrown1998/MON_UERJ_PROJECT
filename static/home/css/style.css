@@ -21,8 +21,6 @@
     background-color: transparent;
 }
 
-
-
 html{
     font-size: 62.5%;
     background-image: url('../images/fundo.png');
@@ -273,7 +271,7 @@ select.hora{
 
 .form-table{
     text-align: center;
-    vertical-align: center;
+    vertical-align: middle;
     font-size: medium;
     color: var(--red);
     outline: none;
@@ -281,6 +279,15 @@ select.hora{
     max-width: 100px;
     width: 2vw;
     min-width: 30px;
+}
+.form-table-large{
+    text-align: center;
+    vertical-align: middle;
+    color: var(--blue-light);
+    border: none;
+    outline: none;
+    font-size: medium;
+    font-weight: bold;
 }
 
 .table-matricula{

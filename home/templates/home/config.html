@@ -28,13 +28,17 @@
                     <!--for aqui-->
                     {% for aluno in data %}
                     <tr>
-                        <td>{{aluno.usuario.username}}</td>
-                        <td>{{aluno.usuario.first_name}} {{aluno.usuario.last_name}}</td>
-                        <td>{{aluno.monitorias_marcadas}}</td>
-                        <form action="#" method="post">
+                        <form action="{% url 'home:update_monitorias' %}" method="post">
                             {% csrf_token %}
                             <td>
-                                <input type="number" name="{{aluno.usuario.username}}" id="monitorias_marcadas" value="{{aluno.monitorias_presentes}}" class="form-table">
+                                <input type="text" class="form-table-large" name="username" value={{aluno.usuario.username}}>
+                                </input>
+                            </td>
+                            <td>{{aluno.usuario.first_name}} {{aluno.usuario.last_name}}</td>
+                            <td>{{aluno.monitorias_marcadas}}</td>
+                            <td>
+                                <input type="number" name="monitorias_presentes"
+                                id='monitorias_marcadas' value="{{aluno.monitorias_presentes}}" class="form-table">
                                 </input>
                             </td>
                             <td><input type="submit" value="&rArr;" class="btn-select"></td>
