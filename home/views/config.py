@@ -5,6 +5,19 @@ from home.models import DataUser, User
 from django.db.models import Q
 
 
+def update_hours(request):
+    day = request.POST.get('daysweek', '').strip()
+    time_start = request.POST.get('time_start', '').strip()
+    time_end = request.POST.get('time_end', '').strip()
+    print(day, time_start, time_end)
+    return redirect('home:config')
+
+def update_days(request):
+    days = request.POST
+    print(days)
+    return redirect('home:config')
+
+
 def update_monitorias(request):
 
     usuario = request.POST.get('username', '').strip()
