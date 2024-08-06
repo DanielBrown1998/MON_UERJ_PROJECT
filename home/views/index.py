@@ -5,8 +5,8 @@ from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
 
-def index(request):
-    from home.models import Horas, DataUser
+def days():
+    from home.models import Horas
     horarios = Horas.objects.all()
     weekday = {}
     data = [{"hora": item.time, 'day': item.day.day} for item in horarios]
@@ -15,12 +15,15 @@ def index(request):
             weekday[item['day']] = [item['hora']]
             continue
         weekday[item['day']].append(item['hora'])
-    del data
     data = [{"dayweek": key, "time_start": str(value[0]), "time_final": str(value[-1])} for key, value in weekday.items()]
+    return data
+
+
+def index(request):
 
     context = {
         'title': 'HOME',
-        'horarios': data,
+        'horarios': days(),
     }
 
     url = 'home/index.html'
