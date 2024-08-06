@@ -1,8 +1,42 @@
 {% extends "home/index.html" %}
-{% block content %}
-    <h2>{{username}} encontrado!</h2>
-{% endblock content %}
+{% load static %}
 {% block aside %}
-
+<aside class="info div-padding">
+    <div class="div-logo flex-row ">
+        <a href="#" target="_blank">
+            <img src="{% static 'home/images/logomarca-uerj.png' %}" alt="logo da uerj" class='logo'>
+        </a>
+    </div>
+    <div>
+        <form action="" class=" div-padding flex-column" method="POST">
+            {% csrf_token %}
+            <label for="matricula" class="flex-column item-padding">
+                <input 
+                type="text" 
+                name="matricula" 
+                id="matricula" required autocomplete="off" 
+                class="form" 
+                placeholder="matrícula" 
+                value="{{username}}" 
+                readonly>
+            </label>
+            <label for="matricula" class="flex-column item-padding">
+                <input 
+                type="password" 
+                name="password" 
+                id="matricula" required autocomplete="off" 
+                class="form"
+                placeholder="senha"
+                >
+            </label>
+            <div class="item-padding flex-row-space-around">
+                <input 
+                type="submit" 
+                value="login" 
+                class="btn-send">
+            </div>
+        </form>
+    </div>
+</aside>
 {% endblock aside %}
 
