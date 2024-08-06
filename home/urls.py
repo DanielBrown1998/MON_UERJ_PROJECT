@@ -7,6 +7,7 @@ urlpatterns = [
 
     #uso livre
     path('', views.index, name='home'),
+    path('login/', views.login, name='login'),
     path('monitorias/', views.monitoria, name='monitorias'),
     path('search/', views.search, name='search'),
     #o usuário pode acessar
