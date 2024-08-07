@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 
 
 def update(request):
+    
     context = {
         'title': 'Update',
     }

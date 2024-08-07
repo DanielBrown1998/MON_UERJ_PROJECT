@@ -1,12 +1,17 @@
 {% extends "home/index.html" %}
 {% block content %}
     <div class="flex-column">
-        <a href="{% url 'home:matricula' %}" 
-        class='btn-select a-rodape item-padding margin-top-bottom'>
-        AUTORIZAR MATRÍCULAS</a>
-        <a href="{% url 'home:dados' %}" 
-        class='btn-select a-rodape item-padding margin-top-bottom'>
-        DADOS ESTATÍSTICOS</a>
+        <div class="flex-row">
+            <a href="{% url 'home:matricula' %}"
+            class='btn-select a-rodape item-padding margin'>
+            AUTH. MATRÍCULAS</a>
+            <a href="{% url 'home:usuarios' %}"
+            class='btn-select a-rodape item-padding margin'>
+            USUÁRIOS</a>
+            <a href="{% url 'home:dados' %}"
+            class='btn-select a-rodape item-padding margin'>
+            DADOS ESTATÍSTICOS</a>
+        </div>
         <div class="div-search border-white div-padding">
             <form action="{% url 'home:search_config' %}" method="get">
                 <input type="text" name="q" id="search" class="form-search item-padding"

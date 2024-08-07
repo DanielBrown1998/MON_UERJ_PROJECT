@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('monitorias/', views.monitoria, name='monitorias'),
     path('search/', views.search, name='search'),
+
     #o usuário pode acessar
     path('udpate/', views.update, name='update'),
 
@@ -23,6 +24,7 @@ urlpatterns = [
     path('config/matricula/', views.matricula, name='matricula'),
     path('config/matricula/create', views.create, name='create'),
     path('config/matricula/update', views.update_matricula, name='update_matricula'),
+    path('config/matricula/usuarios', views.usuarios, name='usuarios'),
     
 
     #CRUD - todas essas views vão dentro da página config.

@@ -21,7 +21,7 @@
             <h2 class="flex-row div-padding">UDPATE</h2>
             <form method="POST" class="flex-column div-padding" action="{% url 'home:update_matricula' %}">
                 {% csrf_token %}
-                <select name="matricula_antiga_id" id="matricula">
+                <select name="matricula_antiga_id" id="matricula" class="text-center">
                     {% for matricula in matriculas %}
                         <option value="{{matricula.id}}">
                             {{matricula.matricula}}
