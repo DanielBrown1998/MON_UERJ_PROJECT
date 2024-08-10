@@ -13,8 +13,8 @@
                 <tr>
                     <th>username</th>
                     <th>name</th>
+                    <th>super</th>
                     <th>staff</th>
-                    <th>superuser</th>
                     <th>del</th>
                     <th>update</th>
                 </tr>
@@ -23,7 +23,7 @@
                 <!--for aqui-->
                 {% for aluno in data %}
                 <tr>
-                    <form action="{% url 'home:update_monitorias' %}" method="post">
+                    <form action="{% url 'home:update_usuarios' %}" method="post">
                         {% csrf_token %}
                         <td>
                             <input type="text" class="form-table-large" name="username" value={{aluno.username}}>

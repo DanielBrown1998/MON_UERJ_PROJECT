@@ -5,6 +5,40 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from home.models import User        
 
+def update_usuarios(request):
+    user_ = request.POST.get('username', '')
+    user = User.objects.get(username=user_)
+    super_user = request.POST.get('is_superuser')
+    is_staff = request.POST.get('is_staff')
+    delete = request.POST.get('delete')
+
+    if delete:
+        print(f"Usuario {user.first_name + ' ' + user.last_name} deletado")
+        #user.delete()
+        return redirect('home:search_usuarios')
+    if super_user:
+        if user.is_superuser:
+            print(f"Usuario {user.first_name + ' ' + user.last_name} já é um super usuário")
+        else:
+            user.is_superuser = True
+            print(f"Usuario {user.first_name + ' ' + user.last_name} é um super usuário")
+    else:
+        user.is_superuser = False
+        print(f"Usuario {user.first_name + ' ' + user.last_name} não é mais um super usuário")
+    if is_staff:
+        if user.is_staff:
+            print(f"Usuario {user.first_name + ' ' + user.last_name} já é da staff")
+        else:
+            user.is_staff = True
+            print(f"Usuario {user.first_name + ' ' + user.last_name} agora é da staff")
+    else:
+        user.is_staff = False
+        print(f"Usuario{user.first_name + ' ' + user.last_name} não é mais da staff")
+
+    #user.save()
+    
+    return redirect('home:search_usuarios')
+
 def search_usuarios(request):
     search_value = str(request.GET.get('q', '')).strip()
     if not search_value:
