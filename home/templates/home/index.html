@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
     {% include "home/partials/head.html" %}
@@ -23,8 +25,6 @@
                                     {{item.time_start}} -> {{item.time_final}}
                                 </li>
                             {% endfor %}
-                            
-                            
                         </ul>
                         <h3 class="item-padding text-center">Possíveis Dúvidas: </h3>
                         <dl>
@@ -64,6 +64,28 @@
                                 Minha matrícula não consta no banco de dados mesmo que eu esteja inscrito na matéria?
                                 <dd class="dd-style item-padding italic">
                                     <h5>- Entre em contato com o monitor apra solucionar tal problema.</h5>
+                                </dd>
+                            </dt>
+                            <dt>
+                                Teams da monitoria (Link):
+                                <dd class="dd-style item-padding italic div-logo">
+                                    <a href="#" class="flex-row">
+                                        <img src="{% static "home/images/teams.png" %}" alt="microsoft teams logo" class="logo-small">
+                                        <h5 class="flex-column">
+                                            Teams
+                                        </h5>
+                                    </a>
+                                </dd>
+                            </dt>
+                            <dt>
+                                <p>Discord da Monitoria (Link):</p>
+                                <dd class="dd-style item-padding italic div-logo">
+                                    <a href="https://discord.gg/T5jRpH6cHB" class="flex-row">
+                                        <img src="{% static "home/images/discord.png" %}" alt="discord logo" class="logo-small">
+                                        <h5 class="flex-column">
+                                            Discord
+                                        </h5>
+                                    </a>
                                 </dd>
                             </dt>
                         </dl>
