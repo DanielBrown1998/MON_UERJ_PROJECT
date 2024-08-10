@@ -2,7 +2,7 @@
 {% block content %}
 <div class="flex-column-space-around">
     <div class="div-search border-white div-padding">
-        <form action="{% url 'home:search_config' %}" method="get">
+        <form action="{% url 'home:search_usuarios' %}" method="get">
             <input type="text" name="q" id="search" class="form-search item-padding"
             placeholder="Search" autocomplete="off" value="{{search}}">
         </form>
@@ -13,8 +13,8 @@
                 <tr>
                     <th>username</th>
                     <th>name</th>
-                    <th>is_staff</th>
-                    <th>is_superuser</th>
+                    <th>staff</th>
+                    <th>superuser</th>
                     <th>del</th>
                     <th>update</th>
                 </tr>

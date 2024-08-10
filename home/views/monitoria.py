@@ -6,6 +6,8 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 
+
+
 def monitoria(request):
     from home.models import Monitorias
     contacts = Monitorias.objects.all().order_by('-date')

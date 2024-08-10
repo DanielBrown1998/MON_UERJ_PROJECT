@@ -24,8 +24,8 @@ urlpatterns = [
     path('config/matricula/', views.matricula, name='matricula'),
     path('config/matricula/create', views.create, name='create'),
     path('config/matricula/update', views.update_matricula, name='update_matricula'),
-    path('config/matricula/usuarios', views.usuarios, name='usuarios'),
-    
+    path('config/usuarios', views.usuarios, name='usuarios'),
+    path('config/search_usuarios', views.search_usuarios, name='search_usuarios'),    
 
     #CRUD - todas essas views vão dentro da página config.
     #path('config/<int:id>/detail', views.detail, name='detail'),
