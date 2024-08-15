@@ -33,7 +33,7 @@
                     <!--for aqui-->
                     {% for aluno in data %}
                     <tr>
-                        <form action="{% url 'home:update_monitorias' %}" method="post">
+                        <form action="{% url 'home:update_monitorias' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <td>
                                 <input type="text" class="form-table-large" name="username" value={{aluno.usuario.username}}>
@@ -81,7 +81,7 @@
 {% block aside %}
     <div class="info div-padding">
         <h2 class="text-center item-padding legend">Dias da semana: </h2>
-        <form action="{% url 'home:update_days' %}" method="post" class="flex-column border-white item-padding">
+        <form action="{% url 'home:update_days' %}" method="post" class="flex-column border-white item-padding" enctype="multipart/form-data">
             {% csrf_token %}
             {% for day in daysweek %}
                 <label for="{{day}}" class="flex-row-info item-padding">
@@ -96,7 +96,7 @@
             <input type="submit" value="definir" class="btn-send">
         </form>
         <h2 class="text-center item-padding legend">Horas: </h2>
-        <form action="{% url 'home:update_hours' %}" method="post" class="flex-column border-white item-padding">
+        <form action="{% url 'home:update_hours' %}" method="post" class="flex-column border-white item-padding" enctype="multipart/form-data">
             {% csrf_token %}
             <select class="hora" name="daysweek" id="daysweek">
                 {% for day in daysweek %}

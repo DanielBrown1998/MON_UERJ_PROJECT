@@ -23,7 +23,7 @@
                 <!--for aqui-->
                 {% for aluno in data %}
                 <tr>
-                    <form action="{% url 'home:update_usuarios' %}" method="post">
+                    <form action="{% url 'home:update_usuarios' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <td>
                             <input type="text" class="form-table-large" name="username" value={{aluno.username}}>

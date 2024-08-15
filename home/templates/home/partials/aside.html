@@ -6,7 +6,7 @@
         </a>
     </div>
     <div>
-        <form action="{% url 'home:login' %}" class=" div-padding flex-column" method="POST">
+        <form action="{% url 'home:login' %}" class=" div-padding flex-column" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="matricula" class="flex-column item-padding">
                 <input type="text" name="matricula" id="matricula" required autocomplete="off" class="form" 

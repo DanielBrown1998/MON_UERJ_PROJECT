@@ -3,7 +3,7 @@
     <div class="flex-row">
         <div class="flex-column">
             <h2 class="flex-row div-padding">UPDATE</h2>
-            <form method="POST" class="flex-column div-padding" action="">
+            <form method="POST" class="flex-column div-padding" action="" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label for="primeiro-nome" class="flex-row-space-between item-padding">
                     <p class="legend-cadastro">Primeiro Nome:</p>
