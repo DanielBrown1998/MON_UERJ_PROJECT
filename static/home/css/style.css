@@ -139,7 +139,7 @@ h1, h2, h3 ,h4, h5, h6{
     color: var(--blue);
 }
 
-.form-cadastro{
+input:not(.form){
     text-align: center;
     border: none;
     outline: none;
@@ -606,4 +606,14 @@ input[type="time"]{
         outline: none;
         border-radius: 1em;
     }
+}
+
+.field-error{
+    color: var(--red);
+    font-weight: 700;
+    font-style: oblique;
+    font-size: .9em;
+}
+.field-error ul{
+    list-style: none;
 }
