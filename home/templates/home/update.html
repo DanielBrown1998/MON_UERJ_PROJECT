@@ -3,18 +3,22 @@
 <div class="flex-row">
     <div class="flex-column">
         <h2 class="flex-row div-padding">UPDATE</h2>
-        <form method="POST" class="flex-column div-padding" action="" enctype="multipart/form-data">
+        <form method="POST" class="flex-column div-padding" action="{% url "home:update" %}" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
                 <label for="{{ field.id_for_label }}" class="flex-row-space-between item-padding">
-                    <p class="legend-cadastro">{{ field.label }}</p>
+                    <p class="legend-cadastro">
+                        {{ field.label }}
+                    </p>
                     {{ field }}
                 </label>
-                <div class="field-error">{{field.errors}}</div>
+                <div class="field-error">
+                    {{field.errors}}
+                </div>
             {% endfor %}
             <div class="flex-row-space-around item-padding">
                 <input type="submit" value="Atualizar" class="btn-send">
-                <input type="reset" value="Limpar" class="btn-send">
+                <input type="reset" value="resetar" class="btn-send">
             </div>
         </form>
     </div>

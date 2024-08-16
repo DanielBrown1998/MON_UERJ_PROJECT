@@ -4,6 +4,7 @@ from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
 
+
 def days():
     from home.models import Horas
     horarios = Horas.objects.all()

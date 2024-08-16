@@ -5,6 +5,8 @@
 :root{
 --pink: #BF1F3C;
 --red: #D90718;
+--green: #1ab343;
+--green-dark: #0A4F1D;
 --blue: #092140;
 --white: #d2d8e4e8;
 --black: #181818d7;
@@ -139,7 +141,7 @@ h1, h2, h3 ,h4, h5, h6{
     color: var(--blue);
 }
 
-input:not(.form){
+.form-cadastro{
     text-align: center;
     border: none;
     outline: none;
@@ -195,8 +197,8 @@ input:not(.form){
 
 .content{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    max-width: 100vw;
 }
 
 .div-search{
@@ -609,11 +611,34 @@ input[type="time"]{
 }
 
 .field-error{
-    color: var(--red);
-    font-weight: 700;
+    color: var(--pink);
+    font-weight: 500;
     font-style: oblique;
-    font-size: .9em;
+    font-size: .3em;
 }
 .field-error ul{
     list-style: none;
+}
+
+.success{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--green);
+    border: 1px solid var(--green-dark);
+    border-radius: 1vh;
+    padding: 1vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.success p{
+    color: var(--white);
+    font-weight: 500;
+    font-style: oblique;
+    font-size: 1.1em;
+}
+
+.non-field-errors{
+    
 }

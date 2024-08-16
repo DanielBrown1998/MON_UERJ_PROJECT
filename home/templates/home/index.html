@@ -8,6 +8,19 @@
     <main class="flex-row">
         <section class="conteiner item-padding">
             <article class="content div-padding">
+                {% if form %}
+                    {% if form.is_valid %}
+                        <div class="success">
+                            <p class="text-center">Sucesso!</p>
+                        </div>
+                    {% elif form.non_field_errors %}
+                        <div class="flex-column non-field-errors">
+                            {% for fields in form.non_field_errors %}
+                                {{fields.as_p}}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endif %}
                 {% block content %}
                     <div class="flex-column">
                         <h2 class="item-padding text-center">

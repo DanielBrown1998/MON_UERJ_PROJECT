@@ -14,7 +14,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),
 
     #o usuário pode acessar
-    path('udpate/', views.update, name='update'),
+    path('update/', views.update, name='update'),
 
     #somento o superuser pode acessá-lo
     path('data/', views.dados, name='dados'),
