@@ -8,6 +8,8 @@ urlpatterns = [
     #uso livre
     path('', views.index, name='home'),
     path('login/', views.login, name='login'),
+    path('cadastro/', views.cadastro, name='cadastro'),
+
     path('monitorias/', views.monitoria, name='monitorias'),
     path('search/', views.search, name='search'),
 

@@ -7,3 +7,4 @@ from home.views.search import *
 from home.views.update import *
 from home.views.usuarios import *
 from home.views.login import *
+from home.views.cadastro import *
