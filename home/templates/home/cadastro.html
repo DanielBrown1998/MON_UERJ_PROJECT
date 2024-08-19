@@ -1,41 +1,49 @@
 {% extends "home/index.html" %}
 {% block content %}
+<div class="flex-row">
     <div class="flex-column">
-        <h2 class="flex-row div-padding">CADASTRO</h2>
-        <form action="{% url 'home:cadastro' %}" method="post" enctype="multipart/form-data">
+        <h2 class="flex-row div-padding">Cadastro</h2>
+        <form 
+        method="POST" 
+        class="flex-column div-padding" 
+        action="{% url 'home:cadastro' %}" 
+        enctype="multipart/form-data"
+        >
             {% csrf_token %}
-            <label for="username" class="flex-column item-padding">
-                <input type="text" name="username" id="username" required autocomplete="off" class="form-cadastro" value="{{username}}">
-            </label>
-            <label for="first_name" class="flex-column item-padding">
-                <input type="text" name="first_name" id="first_name" required autocomplete="off" class="form-cadastro" placeholder="primeiro nome">
-            </label>
-            <label for="last_name" class="flex-column item-padding">
-                <input type="text" name="last_name" id="last_name" required autocomplete="off" class="form-cadastro" placeholder="último nome">
-            </label>
-            <label for="email" class="flex-column item-padding">
-                <input type="email" name="email" id="email" required autocomplete="off" class="form-cadastro" placeholder="e-mail">
-            </label>
-            <label for="password" class="flex-column item-padding">
-                <input type="password" name="password" id="password" required autocomplete="off" class="form-cadastro" placeholder="senha">
-            </label>
-            <label for="password2" class="flex-column item-padding">
-                <input type="password" name="password2" id="password2" required autocomplete="off" class="form-cadastro" placeholder="confirmar senha">
-            </label>
-            <div class="item-padding flex-row-space-around">
-                <input type="submit" value="cadastrar" class="btn-send">
+            {% for field in form %}
+                <label for="{{ field.id_for_label }}" class="flex-row-space-between item-padding">
+                    <p class="legend-cadastro">
+                        {{ field.label }}
+                    </p>
+                    {{ field }}
+                </label>
+                <div class="field-error">
+                    {{field.errors}}
+                </div>
+            {% endfor %}
+            <div class="flex-row-space-around item-padding">
+                <input type="submit" value="Atualizar" class="btn-send">
+                <input type="reset" value="resetar" class="btn-send">
             </div>
         </form>
     </div>
+</div>
 {% endblock content %}
 {% block aside %}
 <div class="flex-column">    
     <h2 class="div-padding text-center italic">
         Informativos
     </h2>
-    <p class="div-padding text-center italic">Se você chegou até aqui é porque está matriculado na turma de arquitetrua desse semestre!</p>
-    <p class="div-padding text-center italic">É de extrema importância que você insira corretamente os seus dados</p>
-    <p class="div-padding text-center italic">Sua matrícula é inserida pelo monitor e é seu usuário</p>
-    <p class="div-padding text-center italic">Lembre-se também de guardar a sua senha, <u>não a esqueça</u></p>
+    <p class="div-padding text-center italic">
+        Aqui você realiza o seu cadastro
+    </p>
+    <p class="div-padding text-center italic">
+        É de extrema importância que você ponha dados atualizados
+    </p>
+    <p class="div-padding text-center italic">
+        Sua matrícula é inserida pelo monitor, os dados que devem ser cadastrados são somente esse ao lado
+    </p>
+    <p class="div-padding text-center italic">anote sua senha, e verifique seu email</p>
 </div>
 {% endblock aside %}
+

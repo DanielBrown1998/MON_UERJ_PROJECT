@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from home.forms.login import Login
-from home.models import DataUser, User
+from home.forms.update_create_form import UpdateOrCreateForm
+from home.models import User
 from django.db.models import Q
 from home.models import Matriculas
 from home.views import days
@@ -22,7 +23,6 @@ def login(request):
             return redirect('home:home')
         context = {
             'title': 'login',
-            'horarios': days(),
             'form': form,
         }
         url = 'home/login.html'
@@ -43,14 +43,15 @@ def login(request):
                 )
             context = {
                 'title': 'Cadastro',
-                'username': matricula,
+                'form': UpdateOrCreateForm(
+                    matricula=matricula
+                )
             }
             url = 'home/cadastro.html'
             return render(request, url, context)
     print('usuário encontrado!')
     context = {
         'title': 'login',
-        'horarios': days(),
         'username': matricula,
         'form': Login(
             matricula
