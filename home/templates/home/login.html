@@ -8,27 +8,16 @@
         </a>
     </div>
     <div>
-        <form action="" class=" div-padding flex-column" method="POST" enctype="multipart/form-data">
+        <form action="{% url "home:login" %}" class=" div-padding flex-column" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <label for="matricula" class="flex-column item-padding">
-                <input 
-                type="text" 
-                name="matricula" 
-                id="matricula" required autocomplete="off" 
-                class="form" 
-                placeholder="matrícula" 
-                value="{{username}}" 
-                readonly>
-            </label>
-            <label for="matricula" class="flex-column item-padding">
-                <input 
-                type="password" 
-                name="password" 
-                id="matricula" required autocomplete="off" 
-                class="form"
-                placeholder="senha"
-                >
-            </label>
+            {% for field in form %}
+                <label for="{{ field.id_for_label }}" class="flex-column item-padding">
+                    {{ field }}
+                </label>
+                <div class="field-error">
+                    {{field.errors}}
+                </div>
+            {% endfor %}
             <div class="item-padding flex-row-space-around">
                 <input 
                 type="submit" 
