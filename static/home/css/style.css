@@ -640,5 +640,8 @@ input[type="time"]{
 }
 
 .non-field-errors{
-    
+     color: var(--pink);
+    font-weight: 500;
+    font-style: oblique;
+    font-size: .3em;
 }

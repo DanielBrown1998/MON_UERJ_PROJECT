@@ -16,7 +16,7 @@
                     {% elif form.non_field_errors %}
                         <div class="flex-column non-field-errors">
                             {% for fields in form.non_field_errors %}
-                                {{fields.as_p}}
+                                {{fields}}
                             {% endfor %}
                         </div>
                     {% endif %}
