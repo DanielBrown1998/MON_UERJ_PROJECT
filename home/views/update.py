@@ -14,7 +14,10 @@ def update(request):
         'title': 'Update',
         'form': form,
         }
-        url = 'home/update.html'
+        if form.is_valid():     
+            ...
+
+        url = 'home/index.html'
         return render(request, url, context=context)
         
     context = {

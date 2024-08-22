@@ -20,9 +20,16 @@ def login(request):
         )
         if form.is_valid():
             #aqui o login será realizado
-            return redirect('home:home')
+            context = {
+            'title': 'Home',
+            'horarios': days(),
+            'form': form,
+            }
+            url = 'home/index.html'
+            return render(request, url, context=context)
         context = {
             'title': 'login',
+            'horarios': days(),
             'form': form,
         }
         url = 'home/login.html'
@@ -53,6 +60,7 @@ def login(request):
     context = {
         'title': 'login',
         'username': matricula,
+        'horarios': days(),
         'form': Login(
             matricula
             )

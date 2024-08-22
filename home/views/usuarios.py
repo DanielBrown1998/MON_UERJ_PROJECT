@@ -8,9 +8,9 @@ from home.models import User
 def update_usuarios(request):
     user_ = request.POST.get('username', '')
     user = User.objects.get(username=user_)
-    super_user = request.POST.get('is_superuser')
-    is_staff = request.POST.get('is_staff')
-    delete = request.POST.get('delete')
+    super_user = request.POST.get('is_superuser', '')
+    is_staff = request.POST.get('is_staff', '')
+    delete = request.POST.get('delete', '')
 
     if delete:
         print(f"Usuario {user.first_name + ' ' + user.last_name} deletado")
