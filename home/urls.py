@@ -26,6 +26,7 @@ urlpatterns = [
     path('config/matricula/', views.matricula, name='matricula'),
     path('config/matricula/create', views.create, name='create'),
     path('config/matricula/update', views.update_matricula, name='update_matricula'),
+    path('config/matricula/delete', views.delete_matricula, name='delete_matricula'),
     path('config/usuarios', views.usuarios, name='usuarios'),
     path('config/usuarios/search', views.search_usuarios, name='search_usuarios'),    
     path('config/usuarios/update', views.update_usuarios, name='update_usuarios'),

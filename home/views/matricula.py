@@ -39,3 +39,15 @@ def update_matricula(request):
     if matricula_antiga_id:
         print(matricula_antiga_id)
     return redirect('home:matricula')
+
+def delete_matricula(request):
+    title = {
+        'title': 'Deletando Matricula',
+    }
+    matricula = request.POST.get('matricula', '').strip()
+    delete_all = request.POST.get('delete_all', '').strip()
+    if delete_all:
+        print(delete_all)
+    if matricula:
+        print(matricula)
+    return redirect('home:matricula')
