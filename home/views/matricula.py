@@ -41,13 +41,30 @@ def update_matricula(request):
     return redirect('home:matricula')
 
 def delete_matricula(request):
-    title = {
-        'title': 'Deletando Matricula',
-    }
+    
     matricula = request.POST.get('matricula', '').strip()
+    
     delete_all = request.POST.get('delete_all', '').strip()
+    
+    confirmation = request.POST.get('confirmation', 'no').strip()
+    
+    context = {
+        'title': 'Deletando Matricula',
+        'confirmation': confirmation,
+        'delete_all': delete_all,
+        'matricula': matricula,
+    }
+    
     if delete_all:
         print(delete_all)
+    
     if matricula:
         print(matricula)
-    return redirect('home:matricula')
+    
+    if confirmation != 'no':
+        ...
+        return redirect('home:matricula')
+
+    return render(
+        request, 'home/matricula.html', context=context
+    )

@@ -15,8 +15,8 @@ def update(request):
         'form': form,
         }
         if form.is_valid():     
+            #form.save()
             ...
-
         url = 'home/index.html'
         return render(request, url, context=context)
         

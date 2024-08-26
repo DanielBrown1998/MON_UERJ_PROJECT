@@ -30,5 +30,4 @@ urlpatterns = [
     path('config/usuarios', views.usuarios, name='usuarios'),
     path('config/usuarios/search', views.search_usuarios, name='search_usuarios'),    
     path('config/usuarios/update', views.update_usuarios, name='update_usuarios'),
-
 ]
