@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
-from home.models import DataUser, User
+from home.models import DataUser, User, Horas, Days
 from django.db.models import Q
 
 
@@ -25,6 +25,7 @@ def update_monitorias(request):
     monitorias = DataUser.objects.get(owner__username=usuario)
     if monitorias.monitorias_marcadas >= int(monitorias_presentes):
         monitorias.monitorias_presentes = int(monitorias_presentes)
+        #monitorias.save()
     else:
         print('fora do intervalo')
         #envie uma mensagem de erro
@@ -32,7 +33,6 @@ def update_monitorias(request):
 
 
 def search_config(request):
-    from home.models import DataUser, Days, Horas
 
     search_value = str(request.GET.get('q', '')).strip()
     if not search_value:
@@ -77,7 +77,6 @@ def search_config(request):
 
 
 def config(request):
-    from home.models import DataUser, Days, Horas
 
     data_user = DataUser.objects.all()
     days = Days.objects.all()
