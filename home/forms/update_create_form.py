@@ -2,9 +2,10 @@ from typing import Any
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
-class UpdateOrCreateForm(forms.ModelForm):
+class UpdateOrCreateForm(UserCreationForm):
 
     def __init__(
                 self, 
@@ -65,7 +66,7 @@ class UpdateOrCreateForm(forms.ModelForm):
         ),
     )
 
-    password = forms.CharField(
+    password1 = forms.CharField(
         label = 'senha',
         widget = forms.PasswordInput(
             attrs = {
@@ -91,7 +92,7 @@ class UpdateOrCreateForm(forms.ModelForm):
             'Digite a mesma senha que foi digitada anteriormente',
         ],
     )
-
+"""
     def clean(self):
         cleaned_data = self.cleaned_data
         password = cleaned_data.get('password')
@@ -147,3 +148,4 @@ class UpdateOrCreateForm(forms.ModelForm):
                     )
                 self.add_error('last_name', msg)
         return super().clean()
+"""
