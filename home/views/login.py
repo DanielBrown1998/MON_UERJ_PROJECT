@@ -10,6 +10,8 @@ from home.views import days
 def login(request):
     
     matricula = str(request.POST.get('matricula', '')).strip()
+    if len(matricula) != 12:
+        return redirect('home:home')
     
     password = request.POST.get('password', '')
 

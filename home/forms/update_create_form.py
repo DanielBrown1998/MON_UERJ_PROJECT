@@ -9,12 +9,12 @@ class UpdateOrCreateForm(UserCreationForm):
 
     def __init__(
                 self, 
-                *args, 
-                matricula=None, 
-                first_name=None,
-                last_name=None,
-                email=None,
-                **kwargs, 
+                *args: Any, 
+                matricula: Any =None, 
+                first_name: Any =None,
+                last_name: Any =None,
+                email: Any =None,
+                **kwargs: Any, 
                 ):
         super(UpdateOrCreateForm, self).__init__(*args, **kwargs)
         if matricula:
@@ -41,17 +41,22 @@ class UpdateOrCreateForm(UserCreationForm):
         widgets = {
             'first_name': forms.TextInput(
                 attrs = {
-                    'class': 'form-cadastro'
+                    'class': 'form-cadastro',
+                    'required': 'required',
                 },
             ),
             'last_name': forms.TextInput(
                 attrs = {
-                    'class': 'form-cadastro'
+                    'class': 'form-cadastro',
+                    'required': 'required',
+
                 }
             ),
             'email': forms.EmailInput(
                 attrs = {
-                    'class': 'form-cadastro'
+                    'class': 'form-cadastro',
+                    'required': 'required',
+
                 }
 
             ),
@@ -76,7 +81,7 @@ class UpdateOrCreateForm(UserCreationForm):
         help_text=[
             'Sua senha deve conter pelo menos 8 caracteres',
             'Sua senha não pode ser inteiramente numérica',
-            'Sua senha não pode ser inteiramente alfabética',
+            'Sua senha não pode ser comum (óbvia)',
 
         ]
     )
