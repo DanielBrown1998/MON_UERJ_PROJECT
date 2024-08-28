@@ -11,18 +11,25 @@
         >
             {% csrf_token %}
             {% for field in form %}
-                <label for="{{ field.id_for_label }}" class="flex-row-space-between item-padding">
+               <label for="{{ field.id_for_label }}" class="flex-row-space-between item-padding">
                     <p class="legend-cadastro">
                         {{ field.label }}
                     </p>
                     {{ field }}
                 </label>
+                <div class="field-help">
+                    <ul>
+                    {% for help in field.help_text %}
+                       <li>{{help}}
+                    {% endfor %}
+                    </ul>
+                </div>
                 <div class="field-error">
                     {{field.errors}}
                 </div>
             {% endfor %}
             <div class="flex-row-space-around item-padding">
-                <input type="submit" value="Atualizar" class="btn-send">
+                <input type="submit" value="Cadastrar" class="btn-send">
                 <input type="reset" value="resetar" class="btn-send">
             </div>
         </form>

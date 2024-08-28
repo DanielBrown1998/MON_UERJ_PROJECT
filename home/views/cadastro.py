@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from home.forms.update_create_form import UpdateOrCreateForm
-from home.models import User
 
 
 def cadastro(request):
 
     if request.method == 'POST':
+        print('passei aqui')
         form = UpdateOrCreateForm(
             request.POST
         )

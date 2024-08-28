@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from home.forms.login import Login
 from home.forms.update_create_form import UpdateOrCreateForm
-from home.models import User
+from django.contrib.auth.models import User
 from django.db.models import Q
 from home.models import Matriculas
 from home.views import days
@@ -48,11 +48,12 @@ def login(request):
             print(
                 'não foi possível encontrar seu usuário'
                 )
+            form = UpdateOrCreateForm(
+                matricula = matricula
+            )
             context = {
                 'title': 'Cadastro',
-                'form': UpdateOrCreateForm(
-                    matricula=matricula
-                )
+                'form': form
             }
             url = 'home/cadastro.html'
             return render(request, url, context)

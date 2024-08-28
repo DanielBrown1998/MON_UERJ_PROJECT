@@ -614,9 +614,17 @@ input[type="time"]{
     color: var(--pink);
     font-weight: 500;
     font-style: oblique;
-    font-size: .3em;
+    font-size: .8em;
 }
-.field-error ul{
+
+.field-help{
+    color: var(--blue-light);
+    font-weight: 500;
+    font-style: oblique;
+    font-size: .8em;
+}
+
+.field-error ul, .field-help ul{
     list-style: none;
 }
 
