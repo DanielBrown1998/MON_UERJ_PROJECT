@@ -618,7 +618,7 @@ input[type="time"]{
 }
 
 .field-help{
-    color: var(--blue-light);
+    color: var(--green);
     font-weight: 500;
     font-style: oblique;
     font-size: .8em;
@@ -628,16 +628,19 @@ input[type="time"]{
     list-style: none;
 }
 
-.success{
+.messages{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    background-color: var(--green);
-    border: 1px solid var(--green-dark);
-    border-radius: 1vh;
     padding: 1vh;
     margin-top: 1vh;
     margin-bottom: 1vh;
+    border-radius: 2vh;
+}
+
+.success{
+    background-color: var(--green);
+    border: 1px solid var(--green-dark);
 }
 
 .success p{
@@ -647,9 +650,26 @@ input[type="time"]{
     font-size: 1.1em;
 }
 
-.non-field-errors{
-     color: var(--pink);
+.error{
+    background-color: var(--red);
+    border: 1px solid var(--red);
+}
+
+.error p{
+    color: var(--white);
     font-weight: 500;
     font-style: oblique;
-    font-size: .3em;
+    font-size: 1.1em;
+}
+
+.warning{
+    background-color: var(--pink);
+    border: 1px solid var(--pink);
+}
+
+.warning p{
+    color: var(--white);
+    font-weight: 500;
+    font-style: oblique;
+    font-size: 1.1em;
 }

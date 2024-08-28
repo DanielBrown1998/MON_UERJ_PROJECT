@@ -8,18 +8,12 @@
     <main class="flex-row">
         <section class="conteiner item-padding">
             <article class="content div-padding">
-                {% if form %}
-                    {% if form.is_valid %}
-                        <div class="success">
-                            <p class="text-center">Sucesso!</p>
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="messages {{msg.tags}}">
+                            <p>{{msg}}</p>
                         </div>
-                    {% elif form.non_field_errors %}
-                        <div class="flex-column non-field-errors">
-                            {% for fields in form.non_field_errors %}
-                                {{fields}}
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    {% endfor %}
                 {% endif %}
                 {% block content %}
                     <div class="flex-column">

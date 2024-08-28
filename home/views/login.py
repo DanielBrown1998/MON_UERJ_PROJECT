@@ -5,14 +5,11 @@ from home.forms.update_create_form import UpdateOrCreateForm
 from django.contrib.auth.models import User
 from django.db.models import Q
 from home.models import Matriculas
-from home.views import days
+from home.views import days, message
 
 def login(request):
     
     matricula = str(request.POST.get('matricula', '')).strip()
-    if len(matricula) != 12:
-        return redirect('home:home')
-    
     password = request.POST.get('password', '')
 
     if password:
@@ -21,6 +18,7 @@ def login(request):
             request.POST
         )
         if form.is_valid():
+            message(request, 'Login realizado', sucesss=True)
             #aqui o login será realizado
             context = {
             'title': 'Home',
@@ -29,6 +27,8 @@ def login(request):
             }
             url = 'home/index.html'
             return render(request, url, context=context)
+        
+        message(request, 'Login inválido', error=True)
         context = {
             'title': 'login',
             'horarios': days(),
@@ -37,19 +37,23 @@ def login(request):
         url = 'home/login.html'
         return render(request, url, context=context)
 
+    if len(matricula) != 12:
+        message(request, 'Matrícula inválida', error=True)
+        return redirect('home:home')
+
     if matricula:
         matriculas_cadastradas = Matriculas.objects.filter(matricula__icontains = matricula)
         
         if not matriculas_cadastradas:
-            print('não foi possível encontrar sua matrícula')
+            msg ='não foi possível encontrar sua matrícula'
+            message(request, msg, error=True)
             return redirect('home:home')
         user = User.objects.filter(
             Q(username__icontains = matricula) 
         )
         if not user:
-            print(
-                'não foi possível encontrar seu usuário'
-                )
+            msg = 'não foi possível encontrar seu usuário, cadastre-se!!!'
+            message(request, msg)                
             form = UpdateOrCreateForm(
                 matricula = matricula
             )
@@ -59,7 +63,9 @@ def login(request):
             }
             url = 'home/cadastro.html'
             return render(request, url, context)
-    print('usuário encontrado!')
+    
+    msg = 'usuário encontrado!'
+    message(request, msg, sucesss=True)
     context = {
         'title': 'login',
         'username': matricula,

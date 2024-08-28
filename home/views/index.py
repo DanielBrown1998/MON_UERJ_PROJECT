@@ -1,9 +1,14 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
-from datetime import datetime
-from django.db.models import Q
-from django.core.paginator import Paginator
+from django.shortcuts import render
 
+
+def message(request, msg: str, sucesss=False, error=False):
+    from django.contrib import messages
+    if sucesss:
+        return messages.success(request, msg)
+    if error:
+        return messages.error(request, msg)
+
+    return messages.warning(request=request, message=msg)
 
 def days():
     from home.models import Horas
