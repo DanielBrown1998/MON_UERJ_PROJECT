@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from home.forms.update_create_form import UpdateOrCreateForm
-
+from home.views import message
 
 def cadastro(request):
 
@@ -12,7 +12,9 @@ def cadastro(request):
         )
         if form.is_valid():
             #form.save()
+            message(request, 'Cadastro realizado com sucesso!', sucesss=True)
             return redirect('home:home')
+        message(request, 'Atente-se aos requisitos!!!')
         context = {
         'title': 'Cadastro',
         'form': form,
