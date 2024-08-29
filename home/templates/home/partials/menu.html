@@ -6,15 +6,24 @@
                 Monitorias
             </a>
         </li>
-        <li class="item-menu">
-            <a href="{% url 'home:update' %}">
-                Update
-            </a>
-        </li>
-        <li class="item-menu">
-            <a href="{% url 'home:config' %}">
-                Config
-            </a>
-        </li>
+
+        {% if user.is_authenticated %}
+            <li class="item-menu">
+                <a href="{% url 'home:update' %}">
+                    Update
+                </a>
+            </li>
+            {% if user.is_superuser %}
+                <li class="item-menu">
+                    <a href="{% url 'home:config' %}">
+                        Config
+                    </a>
+                </li>
+            {% endif %}
+            <li class="item-menu">
+                <a href="{% url 'home:logout' %}">
+                    Logout
+                </a>
+        {% endif %}
     </ul>
 </nav>

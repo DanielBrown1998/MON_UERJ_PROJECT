@@ -6,20 +6,23 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from home.models import Matriculas
 from home.views import days, message
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import auth
 
 def login(request):
     
     matricula = str(request.POST.get('matricula', '')).strip()
     password = request.POST.get('password', '')
-
     if password:
+        form_auth = AuthenticationForm(request, data=request.POST)
         form = Login(
             matricula,
             request.POST
         )
-        if form.is_valid():
+        if form.is_valid() and form_auth.is_valid():
+            user = form_auth.get_user()
+            auth.login(request, user)
             message(request, 'Login realizado', sucesss=True)
-            #aqui o login será realizado
             context = {
             'title': 'Home',
             'horarios': days(),
@@ -45,7 +48,7 @@ def login(request):
         matriculas_cadastradas = Matriculas.objects.filter(matricula__icontains = matricula)
         
         if not matriculas_cadastradas:
-            msg ='não foi possível encontrar sua matrícula'
+            msg ='Não foi possível encontrar sua matrícula'
             message(request, msg, error=True)
             return redirect('home:home')
         user = User.objects.filter(
@@ -76,3 +79,8 @@ def login(request):
     }
     url = 'home/login.html'
     return render(request, url, context=context)
+
+def logout(request):
+    auth.logout(request)
+    message(request, 'Logout realizado', sucesss=True)
+    return redirect('home:home')

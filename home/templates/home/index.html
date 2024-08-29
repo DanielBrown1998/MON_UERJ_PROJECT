@@ -8,6 +8,11 @@
     <main class="flex-row">
         <section class="conteiner item-padding">
             <article class="content div-padding">
+                {% if user.is_authenticated %}
+                <h2 class="item-padding text-center">
+                    Bem vindo, {{user.first_name}} {{user.last_name}}!!!
+                </h2>
+                {% endif %}                
                 {% if messages %}
                     {% for msg in messages %}
                         <div class="messages {{msg.tags}}">
@@ -35,11 +40,13 @@
                         </ul>
                         <h3 class="item-padding text-center">Possíveis Dúvidas: </h3>
                         <dl>
+                            {% if user.is_authenticated %}
                             <dt class="item-padding">Como posso entrar em contato com o monitor?
                                 <dd>
                                     <h5 class="dd-style item-padding italic">- Você pode entrar em contato com o monitor através do email: brown.daniel@graduacao.uerj.br ou pelo whatsapp 21-976788321</h5>
                                 </dd>
                             </dt>
+                            {% endif %}
                             <dt class="item-padding">Onde posso encontrar o monitor?
                                 <dd class=" dd-style item-padding italic">
                                     <h5>- Apenas mediante marcação de horário!</h5>
