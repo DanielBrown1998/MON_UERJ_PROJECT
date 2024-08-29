@@ -8,7 +8,8 @@
         </a>
     </div>
     <div>
-        <form action="{% url "home:login" %}" class=" div-padding flex-column" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'home:login' %}" 
+        class=" div-padding flex-column" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
                 <label for="{{ field.id_for_label }}" class="flex-column item-padding">

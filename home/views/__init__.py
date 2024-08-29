@@ -8,3 +8,4 @@ from home.views.update import *
 from home.views.usuarios import *
 from home.views.login import *
 from home.views.cadastro import *
+from home.views.password import *

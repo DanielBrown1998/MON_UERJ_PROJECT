@@ -8,6 +8,7 @@ urlpatterns = [
     #uso livre
     path('', views.index, name='home'),
     path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
     path('cadastro/', views.cadastro, name='cadastro'),
 
     path('monitorias/', views.monitoria, name='monitorias'),
@@ -15,6 +16,7 @@ urlpatterns = [
 
     #o usuário pode acessar
     path('update/', views.update, name='update'),
+    path('update/password/', views.password, name='password'),
 
     #somento o superuser pode acessá-lo
     path('data/', views.dados, name='dados'),

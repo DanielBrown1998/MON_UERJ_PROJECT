@@ -1,17 +1,16 @@
 from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
-from home.forms.update_create_form import UpdateOrCreateForm
+from home.forms.update_create_form import CreateForm
 from home.views import message
 
 def cadastro(request):
 
     if request.method == 'POST':
         print('passei aqui')
-        form = UpdateOrCreateForm(
+        form = CreateForm(
             request.POST
         )
         if form.is_valid():
-            #form.save()
+            form.save()
             message(request, 'Cadastro realizado com sucesso!', sucesss=True)
             return redirect('home:home')
         message(request, 'Atente-se aos requisitos!!!')
