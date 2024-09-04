@@ -30,6 +30,7 @@ html{
     background-position: center;
     background-size: 100px;
     background-attachment: fixed;
+    scroll-behavior: smooth;
 }
 
 .display-stick-bottom{
