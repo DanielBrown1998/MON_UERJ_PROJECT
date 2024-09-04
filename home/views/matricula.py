@@ -4,7 +4,9 @@ from home.models import User
 from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url="home:index")
 def matricula(request):
     from home.models import Matriculas
     matriculas = Matriculas.objects.all()
@@ -16,6 +18,7 @@ def matricula(request):
     url = 'home/matricula.html'
     return render(request, url, context=context)
 
+@login_required(login_url="home:index")
 def create(request):
     context = {
         'title': 'Criando Matricula',
@@ -26,7 +29,7 @@ def create(request):
         print(matricula)
     return redirect('home:matricula')
 
-
+@login_required(login_url="home:index")
 def update_matricula(request):
     context = {
         'title': 'atualizando Matricula',
@@ -40,6 +43,7 @@ def update_matricula(request):
         print(matricula_antiga_id)
     return redirect('home:matricula')
 
+@login_required(login_url="home:index")
 def delete_matricula(request):
     
     matricula = request.POST.get('matricula', '').strip()

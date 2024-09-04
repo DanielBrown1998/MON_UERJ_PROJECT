@@ -7,11 +7,8 @@ from django.db.models import Q
 from home.models import Matriculas
 from home.views import days, message
 from django.contrib.auth.forms import AuthenticationForm
-<<<<<<< HEAD
 from django.contrib import auth 
-=======
-from django.contrib import auth
->>>>>>> f7b2d075c78c58a87b3f5bb1e4c22ee22e6f293a
+from django.contrib.auth.decorators import login_required
 
 def login(request):
     
@@ -84,6 +81,7 @@ def login(request):
     url = 'home/login.html'
     return render(request, url, context=context)
 
+@login_required(login_url="home:home")
 def logout(request):
     auth.logout(request)
     message(request, 'Logout realizado', sucesss=True)

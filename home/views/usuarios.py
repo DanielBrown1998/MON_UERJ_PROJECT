@@ -3,8 +3,11 @@ from django.shortcuts import get_object_or_404
 from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
-from home.models import User        
+from home.models import User
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url="home:home")
 def update_usuarios(request):
     user_ = request.POST.get('username', '')
     user = User.objects.get(username=user_)
@@ -39,6 +42,7 @@ def update_usuarios(request):
     
     return redirect('home:search_usuarios')
 
+@login_required(login_url="home:home")
 def search_usuarios(request):
     search_value = str(request.GET.get('q', '')).strip()
     if not search_value:
@@ -62,6 +66,7 @@ def search_usuarios(request):
     return render(request, url, context=context)
 
 
+@login_required(login_url="home:home")
 def usuarios(request):
     users = User.objects.all().order_by('username')
     pagination = Paginator(users, 10)
@@ -75,5 +80,3 @@ def usuarios(request):
 
     url = 'home/usuarios.html'
     return render(request, url, context=context)
-
-# todo: fazer o search do usuario, assim como o update e delete 

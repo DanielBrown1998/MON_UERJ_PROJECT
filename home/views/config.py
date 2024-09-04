@@ -3,8 +3,10 @@ from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from home.models import DataUser, User, Horas, Days
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url="home:home")
 def update_hours(request):
     day = request.POST.get('daysweek', '').strip()
     time_start = request.POST.get('time_start', '').strip()
@@ -12,12 +14,13 @@ def update_hours(request):
     print(day, time_start, time_end)
     return redirect('home:config')
 
+@login_required(login_url="home:home")
 def update_days(request):
     days = request.POST
     print(days)
     return redirect('home:config')
 
-
+@login_required(login_url="home:home")
 def update_monitorias(request):
 
     usuario = request.POST.get('username', '').strip()
@@ -31,7 +34,7 @@ def update_monitorias(request):
         #envie uma mensagem de erro
     return redirect('home:config')
 
-
+@login_required(login_url="home:home")
 def search_config(request):
 
     search_value = str(request.GET.get('q', '')).strip()
@@ -75,7 +78,7 @@ def search_config(request):
     url = 'home/config.html'
     return render(request, url, context=context)
 
-
+@login_required(login_url="home:home")
 def config(request):
 
     data_user = DataUser.objects.all()
@@ -89,7 +92,6 @@ def config(request):
         for user in data_user
         ]
     hr = [{"time": h.time, "day": h.day.day} for h in horas]
-    #print(*days, sep="\n")
 
     pagination = Paginator(data, 10)
     page_number = request.GET.get("page")
