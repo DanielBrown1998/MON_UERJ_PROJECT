@@ -1,26 +1,67 @@
 from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from home.models import DataUser, User, Horas, Days
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-
+from home.views.index import message
+from django.core.exceptions import ObjectDoesNotExist
 
 @login_required(login_url="home:home")
 def update_hours(request):
     day = request.POST.get('daysweek', '').strip()
     time_start = request.POST.get('time_start', '').strip()
     time_end = request.POST.get('time_end', '').strip()
-    print(day, time_start, time_end)
+    if not day or not time_start or not time_end:
+        message(request, 'Preencha todos os campos', error=True)
+        return redirect('home:config')
+    try:
+        day = Days.objects.get(day=day)
+    except ObjectDoesNotExist:
+        message(request, 'Dia não encontrado', error=True)
+        return redirect('home:config')
+    
+    horas = Horas.objects.filter(
+        day__day=day
+    )
+    for hora in horas:
+        hora.delete()
+    horas_start = Horas(
+        day=day,
+        time=time_start
+    )
+    horas_start.save()
+    horas_final = Horas(
+        day=day,
+        time=time_end
+    )
+    horas_final.save()
     return redirect('home:config')
 
 @login_required(login_url="home:home")
 def update_days(request):
     days = request.POST
-    print(days)
+    dias_cadastrados = Days.objects.all()
+    dias_cadastrados.delete()
+    time_start = request.POST.get('time_start', '07:00:00').strip()
+    time_end = request.POST.get('time_end', '12:00:00').strip()
+    for key, value in days.items():
+        if key == 'csrfmiddlewaretoken':
+            continue
+        day = Days(day=value)
+        day.save()
+        horas_start = Horas(
+            day=day,
+            time=time_start
+        )
+        horas_start.save()
+        horas_final = Horas(
+            day=day,
+            time=time_end
+        )
+        horas_final.save()
     return redirect('home:config')
 
-@login_required(login_url="home:home")
+@login_required(login_url="home:home") # OK...
 def update_monitorias(request):
 
     usuario = request.POST.get('username', '').strip()
@@ -28,13 +69,14 @@ def update_monitorias(request):
     monitorias = DataUser.objects.get(owner__username=usuario)
     if monitorias.monitorias_marcadas >= int(monitorias_presentes):
         monitorias.monitorias_presentes = int(monitorias_presentes)
-        #monitorias.save()
+        monitorias.save()
+        message(request, f'aluno {usuario} atualizado com sucesso', sucesss=True)
     else:
-        print('fora do intervalo')
+        message(request, f'Erro ao atualizar aluno {usuario}', error=True)
         #envie uma mensagem de erro
     return redirect('home:config')
 
-@login_required(login_url="home:home")
+@login_required(login_url="home:home") #OK...
 def search_config(request):
 
     search_value = str(request.GET.get('q', '')).strip()
@@ -78,7 +120,7 @@ def search_config(request):
     url = 'home/config.html'
     return render(request, url, context=context)
 
-@login_required(login_url="home:home")
+@login_required(login_url="home:home") # OK...
 def config(request):
 
     data_user = DataUser.objects.all()
