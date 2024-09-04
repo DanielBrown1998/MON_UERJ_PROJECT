@@ -7,7 +7,11 @@ from django.db.models import Q
 from home.models import Matriculas
 from home.views import days, message
 from django.contrib.auth.forms import AuthenticationForm
+<<<<<<< HEAD
 from django.contrib import auth 
+=======
+from django.contrib import auth
+>>>>>>> f7b2d075c78c58a87b3f5bb1e4c22ee22e6f293a
 
 def login(request):
     
