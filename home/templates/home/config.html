@@ -1,6 +1,6 @@
 {% extends "home/index.html" %}
 {% block content %}
-    <div class="flex-column">
+    <div class="flex-column-space-between">
         <div class="flex-row">
             <a href="{% url 'home:matricula' %}"
             class='btn-select a-rodape item-padding margin'>
@@ -19,39 +19,41 @@
             </form>
         </div>
         {% if data %}
-            <table class="table-matricula div-padding">
-                <thead class="table-cabecalho">
-                    <tr>
-                        <th>matricula</th>
-                        <th>nome</th>
-                        <th>mark</th>
-                        <th>pres</th>
-                        <th>atualizar</th>
-                    </tr>
-                </thead>
-                <tbody class="table-body">
-                    <!--for aqui-->
-                    {% for aluno in data %}
-                    <tr>
-                        <form action="{% url 'home:update_monitorias' %}" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <td>
-                                <input type="text" class="form-table-large" name="username" value={{aluno.usuario.username}}>
-                                </input>
-                            </td>
-                            <td>{{aluno.usuario.first_name}} {{aluno.usuario.last_name}}</td>
-                            <td>{{aluno.monitorias_marcadas}}</td>
-                            <td>
-                                <input type="number" name="monitorias_presentes"
-                                id='monitorias_marcadas' value="{{aluno.monitorias_presentes}}" class="form-table">
-                                </input>
-                            </td>
-                            <td><input type="submit" value="&rArr;" class="btn-select"></td>
-                        </form>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="flex-row overflow-x-auto">
+                <table class="table-matricula div-padding">
+                    <thead class="table-cabecalho">
+                        <tr>
+                            <th>matricula</th>
+                            <th>nome</th>
+                            <th>mark</th>
+                            <th>pres</th>
+                            <th>atualizar</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <!--for aqui-->
+                        {% for aluno in data %}
+                        <tr>
+                            <form action="{% url 'home:update_monitorias' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <td>
+                                    <input type="text" class="form-table-large" name="username" value={{aluno.usuario.username}}>
+                                    </input>
+                                </td>
+                                <td>{{aluno.usuario.first_name}} {{aluno.usuario.last_name}}</td>
+                                <td>{{aluno.monitorias_marcadas}}</td>
+                                <td>
+                                    <input type="number" name="monitorias_presentes"
+                                    id='monitorias_marcadas' value="{{aluno.monitorias_presentes}}" class="form-table">
+                                    </input>
+                                </td>
+                                <td><input type="submit" value="&rArr;" class="btn-select"></td>
+                            </form>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
             <div class="flex-row">
                 {% if data.has_previous and data.has_next %}
                     <span class="flex-row-space-evenly">

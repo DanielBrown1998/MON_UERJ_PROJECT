@@ -12,11 +12,12 @@ urlpatterns = [
     path('cadastro/', views.cadastro, name='cadastro'),
 
     path('monitorias/', views.monitoria, name='monitorias'),
-    path('search/', views.search, name='search'),
+    path('monitorias/search/', views.search, name='search'),
 
     #o usuário pode acessar
     path('update/', views.update, name='update'),
     path('update/password/', views.password, name='password'),
+    path('marcar_monitoria/', views.marcar_monitoria, name='marcar_monitoria'),
 
     #somento o superuser pode acessá-lo
     path('data/', views.dados, name='dados'),

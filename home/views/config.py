@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from home.models import DataUser, User, Horas, Days
+from home.models import DataUser, Horas, Days
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from home.views.index import message
@@ -61,7 +61,7 @@ def update_days(request):
         horas_final.save()
     return redirect('home:config')
 
-@login_required(login_url="home:home") # OK...
+@login_required(login_url="home:home") 
 def update_monitorias(request):
 
     usuario = request.POST.get('username', '').strip()
@@ -76,7 +76,7 @@ def update_monitorias(request):
         #envie uma mensagem de erro
     return redirect('home:config')
 
-@login_required(login_url="home:home") #OK...
+@login_required(login_url="home:home") 
 def search_config(request):
 
     search_value = str(request.GET.get('q', '')).strip()
@@ -120,7 +120,7 @@ def search_config(request):
     url = 'home/config.html'
     return render(request, url, context=context)
 
-@login_required(login_url="home:home") # OK...
+@login_required(login_url="home:home") 
 def config(request):
 
     data_user = DataUser.objects.all()
