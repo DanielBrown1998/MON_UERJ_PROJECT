@@ -5,7 +5,7 @@ app_name = 'home'
 
 urlpatterns = [
 
-    #uso livre
+    #uso livre.
     path('', views.index, name='home'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
@@ -14,12 +14,12 @@ urlpatterns = [
     path('monitorias/', views.monitoria, name='monitorias'),
     path('monitorias/search/', views.search, name='search'),
 
-    #o usuário pode acessar
+    #o usuário pode acessar.
     path('update/', views.update, name='update'),
     path('update/password/', views.password, name='password'),
     path('marcar_monitoria/', views.marcar_monitoria, name='marcar_monitoria'),
 
-    #somento o superuser pode acessá-lo
+    #somente o super-user pode acessá-lo.
     path('data/', views.dados, name='dados'),
     path('config/', views.config, name='config'),
     path('config/search/', views.search_config, name='search_config'),
