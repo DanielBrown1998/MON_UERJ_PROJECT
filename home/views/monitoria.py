@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
 from home.models import Days
 from datetime import datetime, timedelta
 from django.db.models import Q
 from django.core.paginator import Paginator
-from home.models import Monitorias
+from home.models import Monitorias, DataUser
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user
+from django.core.mail import send_mail
 from home.views import message
 
 
@@ -51,7 +53,7 @@ def marcar_monitoria(request):
         message(request, 'Data inválida')
         return redirect('home:monitorias')
 
-    if date_time >= today + timedelta(days=7):
+    if date_time > today + timedelta(days=7):
         message(request, 'escolha entre os próximos 7 dias')
         return redirect('home:monitorias')
 
@@ -69,13 +71,34 @@ def marcar_monitoria(request):
         return redirect('home:monitorias')
 
     info = request.POST.get('text', '')
-    user = request.user
+    user = get_user(request)
 
-    if Monitorias.objects.filter(Q(date=date) & Q(owner=user)).exists():
+    try:
+        cond = Monitorias.objects.get(Q(date=date) & Q(owner=user))
+    except Monitorias.DoesNotExist:
+        cond = None
+    
+    if cond:
         message(request, 'Você já marcou monitoria para este dia')
         return redirect('home:monitorias')
-    
-    monitoria = Monitorias(date=date, owner=user)
-    #monitoria.save()
+    try:
+        data_user = DataUser.objects.get(owner = user)
+    except DataUser.DoesNotExist:
+        data_user = DataUser(owner=user)
+        data_user.save()
+    data_user.monitorias_marcadas += 1
+
+    Monitorias.objects.create(
+        date=date,
+        owner=user,
+    )
+    data_user.save() 
+
+    super_user = User.objects.get(
+        is_superuser=True
+    )
+
+    #send_mail()
+
     message(request, 'Monitoria marcada com sucesso', sucesss=True)
     return redirect('home:monitorias')

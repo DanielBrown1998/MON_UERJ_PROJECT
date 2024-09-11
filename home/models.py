@@ -29,7 +29,7 @@ class DataUser(models.Model):
 class Monitorias(models.Model):
     
     date = models.DateField()
-    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
  
     class Meta:
         verbose_name_plural = "Monitorias"

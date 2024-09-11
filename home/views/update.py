@@ -6,9 +6,6 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url="home:home")
 def update(request):
     
-    #fazer a pertinencia de usuario para acessar essa view
-    
-    
     if request.method == 'POST':
         form = UpdateForm(data=request.POST, instance=request.user)
         context = {

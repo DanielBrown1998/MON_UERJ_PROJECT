@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.core.paginator import Paginator
-from home.models import User
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
@@ -14,29 +14,20 @@ def update_usuarios(request):
     delete = request.POST.get('delete', '')
 
     if delete:
-        print(f"Usuario {user.first_name + ' ' + user.last_name} deletado")
-        #user.delete()
+        user.delete()
         return redirect('home:search_usuarios')
     if super_user:
-        if user.is_superuser:
-            print(f"Usuario {user.first_name + ' ' + user.last_name} já é um super usuário")
-        else:
+        if not user.is_superuser:
             user.is_superuser = True
-            print(f"Usuario {user.first_name + ' ' + user.last_name} é um super usuário")
     else:
         user.is_superuser = False
-        print(f"Usuario {user.first_name + ' ' + user.last_name} não é mais um super usuário")
     if is_staff:
-        if user.is_staff:
-            print(f"Usuario {user.first_name + ' ' + user.last_name} já é da staff")
-        else:
+        if not user.is_staff:
             user.is_staff = True
-            print(f"Usuario {user.first_name + ' ' + user.last_name} agora é da staff")
     else:
         user.is_staff = False
-        print(f"Usuario{user.first_name + ' ' + user.last_name} não é mais da staff")
 
-    #user.save()
+    user.save()
     
     return redirect('home:search_usuarios')
 
