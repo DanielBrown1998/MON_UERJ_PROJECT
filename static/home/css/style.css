@@ -188,8 +188,7 @@ h1, h2, h3 ,h4, h5, h6{
     flex-direction: column-reverse;
     justify-content: space-around;
     min-width: 350px;
-    width: 30vw;
-    max-width: 700px;
+    max-width: 799px;
 }
 
 
@@ -302,8 +301,7 @@ select.hora{
     vertical-align: middle;
     border-collapse: collapse;
     min-width: 350px;
-    width: 40vw;
-    max-width: 600px;
+    max-width: 799px;
     margin-top: 2vh;
     overflow-x: scroll;    
 }
@@ -471,7 +469,7 @@ input[type="time"]{
  }
 
 }
-@media screen and (min-width: 1060px) and (max-height: 799px){
+@media screen and (min-width: 800px){
     .nav-menu{
         margin-top: 1.2vh;
         display: flex;
@@ -479,7 +477,6 @@ input[type="time"]{
     }
     .menu{
         min-width: 800px;
-        width: 60vw;
         max-width: 1100px;
         border-radius: 1vh;
     }
@@ -487,22 +484,19 @@ input[type="time"]{
     .conteiner{
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-evenly;
         min-width: 800px;
-        width: 60vw;
         max-width: 1100px;
     }
     .content{
         max-width: 800px;
-        width: 40vw;
         flex-wrap: nowrap;
     }
     .info{
         position: sticky;
         top: calc(80px + 2vh);
-        max-width: 300px;
-        width: 20vw;
-        min-width: 200px;
+        max-width: 250px;
+        min-width: 100px;
         border: 1px solid var(--white);
         border-radius: 1vw;
         background-color: var(--blue);
@@ -525,14 +519,20 @@ input[type="time"]{
     .form{
         font-weight: bolder;
         min-width: 100px;
-        width: 10vw;
         max-width: 250px;
         background-color: var(--blue);
         color: var(--white);
         border-bottom: 1px solid var(--white);
     }
+    .table-matricula{
+        min-width: 400px;
+        max-width: 600px;
+        overflow-x: auto;
+    }
     textarea{
         border: 1px unset var(--white);
+        min-width: 100px;
+        max-width: 250px;
         color: var(--white);
         outline: none;
     }
@@ -544,7 +544,7 @@ input[type="time"]{
         justify-content: center;
     }
     .menu{
-        min-width: 800px;
+        min-width: 1060px;
         width: 60vw;
         max-width: 1100px;
         border-radius: 1vh;
@@ -554,25 +554,26 @@ input[type="time"]{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        min-width: 800px;
-        width: 60vw;
+        min-width: 900px;
         max-width: 1100px;
     }
     .content{
-        max-width: 800px;
-        width: 40vw;
+        max-width: 1060px;
         flex-wrap: nowrap;
     }
     .info{
         position: sticky;
         top: 8vh;
         max-width: 300px;
-        width: 22vw;
         min-width: 200px;
         border: 1px solid var(--white);
         border-radius: 1vw;
         background-color: var(--blue);
         color: var(--white);
+    }
+    .table-matricula{
+        min-width: 500px;
+        max-width: 800px;
     }
     .flex-row-info{
         display: flex;
