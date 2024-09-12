@@ -74,13 +74,23 @@ def marcar_monitoria(request):
     user = get_user(request)
 
     try:
-        cond = Monitorias.objects.get(Q(date=date) & Q(owner=user))
+        monitoria_user = Monitorias.objects.get(Q(date=date) & Q(owner=user))
     except Monitorias.DoesNotExist:
-        cond = None
+        monitoria_user = None
     
-    if cond:
+    if monitoria_user:
         message(request, 'Você já marcou monitoria para este dia')
         return redirect('home:monitorias')
+    
+    try:
+        limit_monitoria = Monitorias.objects.filter(date=date)
+    except Monitorias.DoesNotExist:
+        limit_monitoria = []
+
+    if len(limit_monitoria) == 5:
+        message(request, 'Esse dia já atingiu o máximo de monitorias possíveis')
+        return redirect('home:monitorias')
+
     try:
         data_user = DataUser.objects.get(owner = user)
     except DataUser.DoesNotExist:

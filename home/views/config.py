@@ -4,7 +4,6 @@ from home.models import DataUser, Horas, Days
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from home.views.index import message
-from django.core.exceptions import ObjectDoesNotExist
 
 @login_required(login_url="home:home")
 def update_hours(request):
@@ -16,15 +15,18 @@ def update_hours(request):
         return redirect('home:config')
     try:
         day = Days.objects.get(day=day)
-    except ObjectDoesNotExist:
+    except Days.DoesNotExist:
         message(request, 'Dia não encontrado', error=True)
         return redirect('home:config')
-    
-    horas = Horas.objects.filter(
+    try:
+        horas = Horas.objects.filter(
         day__day=day
-    )
-    for hora in horas:
-        hora.delete()
+        )
+        for hora in horas:
+            hora.delete()
+    except Horas.DoesNotExist:
+        ...
+        
     horas_start = Horas(
         day=day,
         time=time_start

@@ -1,10 +1,7 @@
 from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
-from home.models import User
-from datetime import datetime
-from django.db.models import Q
-from django.core.paginator import Paginator
+from home.models import Matriculas
 from django.contrib.auth.decorators import login_required
+from home.views import message
 
 @login_required(login_url="home:index")
 def matricula(request):
@@ -25,8 +22,11 @@ def create(request):
         }
     matricula = request.POST.get('matricula', '').strip()
     if matricula:
-        #aqui será realizado o salvamento da matricula na tabela matrícula
-        print(matricula)
+        matricula = Matriculas(
+            matricula=matricula
+        )
+        matricula.save()
+        message(request, 'Matricula Salva com Sucesso', sucesss=True)
     return redirect('home:matricula')
 
 @login_required(login_url="home:index")
@@ -52,22 +52,25 @@ def delete_matricula(request):
     
     confirmation = request.POST.get('confirmation', 'no').strip()
     
+    matriculas = []
+    if delete_all:
+        matriculas = Matriculas.objects.all()
+        
+    if matricula:
+        print(matricula)
+    
+    if confirmation != 'no':
+        if matriculas:
+            matriculas.delete()
+        return redirect('home:matricula')
+
     context = {
         'title': 'Deletando Matricula',
         'confirmation': confirmation,
         'delete_all': delete_all,
         'matricula': matricula,
+        'matriculas': matriculas,
     }
-    
-    if delete_all:
-        print(delete_all)
-    
-    if matricula:
-        print(matricula)
-    
-    if confirmation != 'no':
-        ...
-        return redirect('home:matricula')
 
     return render(
         request, 'home/matricula.html', context=context
