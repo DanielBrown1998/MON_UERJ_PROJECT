@@ -103,12 +103,9 @@ def marcar_monitoria(request):
         owner=user,
     )
     data_user.save() 
-
     super_user = User.objects.get(
         is_superuser=True
     )
-
-    #send_mail()
-
+    
     message(request, 'Monitoria marcada com sucesso', sucesss=True)
     return redirect('home:monitorias')

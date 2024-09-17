@@ -32,7 +32,7 @@ def login(request):
             url = 'home/index.html'
             return render(request, url, context=context)
         
-        message(request, 'Login inválido', error=True)
+        message(request, 'Login inválido, seu usuário pode estar inativo', error=True)
         context = {
             'title': 'login',
             'horarios': days(),

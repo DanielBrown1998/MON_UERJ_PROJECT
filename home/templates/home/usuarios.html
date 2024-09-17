@@ -16,6 +16,7 @@
                     <th>super</th>
                     <th>staff</th>
                     <th>del</th>
+                    <th>status</th>
                     <th>update</th>
                 </tr>
             </thead>
@@ -44,6 +45,12 @@
                         <td>
                             <input type="checkbox" name="delete"
                             id='delete'class="form-table">
+                            </input>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="is_active"
+                            id='active'class="form-table"
+                            {% if aluno.is_active %} checked {% endif %}>
                             </input>
                         </td>
                         <td><input type="submit" value="&rArr;" class="btn-select"></td>

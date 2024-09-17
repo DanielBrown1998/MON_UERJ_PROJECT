@@ -12,15 +12,25 @@ def update_usuarios(request):
     super_user = request.POST.get('is_superuser', '')
     is_staff = request.POST.get('is_staff', '')
     delete = request.POST.get('delete', '')
+    active = request.POST.get('is_active', '')
+
 
     if delete:
         user.delete()
         return redirect('home:search_usuarios')
+    
+    if active:
+        if not user.is_active:
+            user.is_active = True
+    else:
+        user.is_active = False
+
     if super_user:
         if not user.is_superuser:
             user.is_superuser = True
     else:
         user.is_superuser = False
+    
     if is_staff:
         if not user.is_staff:
             user.is_staff = True
