@@ -7,7 +7,6 @@ from home.models import Monitorias, DataUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user
-from django.core.mail import send_mail
 from home.views import message
 
 
@@ -103,9 +102,6 @@ def marcar_monitoria(request):
         owner=user,
     )
     data_user.save() 
-    super_user = User.objects.get(
-        is_superuser=True
-    )
     
     message(request, 'Monitoria marcada com sucesso', sucesss=True)
     return redirect('home:monitorias')
