@@ -69,7 +69,6 @@ def marcar_monitoria(request):
         message(request, 'Verifique os dias disponíveis da monitoria')
         return redirect('home:monitorias')
 
-    info = request.POST.get('text', '')
     user = get_user(request)
 
     try:

@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,8 @@ try:
     from project.local_settings import *
 except ImportError:
     pass
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}                                                                               
