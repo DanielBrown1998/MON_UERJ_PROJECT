@@ -34,3 +34,10 @@ urlpatterns = [
     path('config/usuarios/search', views.search_usuarios, name='search_usuarios'),    
     path('config/usuarios/update', views.update_usuarios, name='update_usuarios'),
 ]
+
+#TODO: 
+# Montar view, para expor ao usuário, os dias que a monitoria pode ser marcada.
+# atualizar o model de DataUser: inserir o atributo monitorias_ausentes
+# atualizar o model de Monitorias: inserir o atributo presente
+# inserir o filtro de dados datetime.now para o search
+# inserir o filtro de dados datetime.now para o search_config  
