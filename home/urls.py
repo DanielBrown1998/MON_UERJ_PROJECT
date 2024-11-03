@@ -35,14 +35,25 @@ urlpatterns = [
     path('config/usuarios/update', views.update_usuarios, name='update_usuarios'),
 ]
 
+
 #TODO: 
-# disponibilizar o delete da conta do próprio usuário.
-# Montar view para expor ao usuário os dias que a monitoria pode ser marcada.
-# atualizar o model de DataUser: inserir o atributo monitorias_ausentes
-# inserir o filtro de dados datetime.now para o search
-# inserir o filtro de dados datetime.now para o search_monitorias
-# retirar o aside para o admin
-# inserir regra de negócio: mais de 3 moonitorias ausentes sem aviso prévio, o usuario será suspenso do sistema
-# disponibilizar para o usuário somente os dias da semana que ele possui marcação de horario na tabela monitoria;
-# requerer login para a view monitoria
-# admin nãopode maracar monitoria, alterar o aside, mostrar todas as monitoria marcadas para hoje no aside  
+# 1 - disponibilizar o delete da conta do próprio usuário.
+# 11 - add telefone ao campo de updates
+# 12 - add telefone ao campo de cadastro
+
+
+# # 2 - Montar view para expor ao usuário os dias que a monitoria pode ser marcada.
+# 4 - inserir o filtro de dados datetime.now para o search
+# 5 - inserir o filtro de dados datetime.now para o search_monitorias
+# 6 - retirar o aside para o admin
+# 8 - disponibilizar para o usuário somente os dias da semana que ele possui marcação de horario na tabela monitoria;
+# 9 - requerer login para a view monitoria
+# 10 - admin não pode marcar monitoria, alterar o aside, mostrar todas as monitoria marcadas para hoje no aside  
+
+
+# 3 - atualizar o model de DataUser: inserir o atributo monitorias_ausentes
+# 13 - add status ao models Monitorias
+# 14 - add alteração de status para as monitorias do dia e antepassadas
+# 15 - vincular os campos de datauser ao models monitoria
+# 16 - alterar a view update_monitorias para realizar o TODO n° 14
+# 7 - inserir regra de negócio: mais de 3 moonitorias ausentes sem aviso prévio, o usuario será suspenso do sistema
