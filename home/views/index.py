@@ -1,5 +1,12 @@
 from django.shortcuts import render
 
+daysweek = [
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira',
+]
 
 def message(request, msg: str, sucesss=False, error=False):
     from django.contrib import messages

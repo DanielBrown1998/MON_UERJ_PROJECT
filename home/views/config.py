@@ -4,6 +4,7 @@ from home.models import DataUser, Horas, Days
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from home.views.index import message
+from home.views.index import daysweek
 
 @login_required(login_url="home:home")
 def update_hours(request):
@@ -88,7 +89,7 @@ def search_config(request):
     data_user = DataUser.objects.filter(
         Q(owner__username__icontains=search_value) |
         Q(owner__first_name__icontains=search_value) |
-        Q(owner__first_name__icontains=search_value)
+        Q(owner__last_name__icontains=search_value)
     )
     days = Days.objects.all()
     horas = Horas.objects.all().order_by('day')
@@ -109,13 +110,7 @@ def search_config(request):
         'title': f'Configurações-{search_value}',
         'data': data,
         'search': search_value,
-        'daysweek': [
-            'segunda-feira', 
-            'terça-feira', 
-            'quarta-feira', 
-            'quinta-feira', 
-            'sexta-feira'
-            ],
+        'daysweek': daysweek,
         'days': [str(dia).strip() for dia in days],
         'horas': hr,
     }
@@ -144,13 +139,7 @@ def config(request):
     context = {
         'title': 'Configurações',
         'data': data,
-        'daysweek': [
-            'segunda-feira', 
-            'terça-feira', 
-            'quarta-feira', 
-            'quinta-feira', 
-            'sexta-feira'
-            ],
+        'daysweek': daysweek,
         'days': [str(dia).strip() for dia in days],
         'horas': hr,
     }

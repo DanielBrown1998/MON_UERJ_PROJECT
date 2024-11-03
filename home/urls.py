@@ -36,8 +36,13 @@ urlpatterns = [
 ]
 
 #TODO: 
-# Montar view, para expor ao usuário, os dias que a monitoria pode ser marcada.
+# disponibilizar o delete da conta do próprio usuário.
+# Montar view para expor ao usuário os dias que a monitoria pode ser marcada.
 # atualizar o model de DataUser: inserir o atributo monitorias_ausentes
-# atualizar o model de Monitorias: inserir o atributo presente
 # inserir o filtro de dados datetime.now para o search
-# inserir o filtro de dados datetime.now para o search_config  
+# inserir o filtro de dados datetime.now para o search_monitorias
+# retirar o aside para o admin
+# inserir regra de negócio: mais de 3 moonitorias ausentes sem aviso prévio, o usuario será suspenso do sistema
+# disponibilizar para o usuário somente os dias da semana que ele possui marcação de horario na tabela monitoria;
+# requerer login para a view monitoria
+# admin nãopode maracar monitoria, alterar o aside, mostrar todas as monitoria marcadas para hoje no aside  

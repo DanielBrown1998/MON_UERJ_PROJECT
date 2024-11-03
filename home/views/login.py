@@ -15,7 +15,8 @@ def login(request):
     matricula = str(request.POST.get('matricula', '')).strip()
     password = request.POST.get('password', '')
     if password:
-        form_auth = AuthenticationForm(request, data=request.POST)
+        form_auth = AuthenticationForm(
+            request, data=request.POST)
         form = Login(
             matricula,
             request.POST
