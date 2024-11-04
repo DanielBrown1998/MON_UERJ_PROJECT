@@ -27,6 +27,7 @@
             <img src="{% static 'home/images/logomarca-uerj.png' %}" alt="logo da uerj" class='logo'>
         </a>
     </div>
+    {% if not user.is_superuser %}
     <form action="{% url 'home:marcar_monitoria' %}" class=" div-padding flex-column" method="POST" enctype="multipart/form-data">
         <p class="legend text-center">
             Marcar Monitoria:
@@ -42,6 +43,14 @@
             <input type="submit" value="marcar" class="btn-send">
         </div>
     </form>
-
+    {% endif %}
+    <ul class='flex-column padding'>
+        <p class="legend">Monitorias:</p>
+        {% for item in monitorias_marcadas_usuario %}
+            <li class="flex-row-info item-padding">
+            <p>data: {{item}}</p>
+            </li>
+        {% endfor %}
+    </ul>    
 </aside>
 {% endif %}

@@ -29,6 +29,7 @@ class Monitorias(models.Model):
     
     date = models.DateField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.BooleanField(default=False)
  
     class Meta:
         verbose_name_plural = "Monitorias"

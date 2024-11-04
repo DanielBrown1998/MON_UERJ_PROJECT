@@ -11,9 +11,10 @@ class MatriculasAdmin(admin.ModelAdmin):
 
 @admin.register(models.Monitorias)
 class MonitoriasAdmin(admin.ModelAdmin):
-    list_display = 'date', 'owner',
-    list_filter = 'date', 'owner',
-    search_fields = 'date', 'owner',
+    list_display = 'date', 'owner', 'status',
+    list_filter = 'date', 'owner', 'status',
+    search_fields = 'date', 'owner', 'status',
+    list_editable = 'status',
     list_per_page = 10
     list_max_show_all = 100
 

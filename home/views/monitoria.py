@@ -5,16 +5,25 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from home.models import Monitorias, DataUser
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.contrib.auth import get_user
-from home.views import message
+from home.views import message, monitorias_marcadas_usuario
 
-
+@login_required(login_url='home:home')
 def monitoria(request):
-    contacts = Monitorias.objects.all().order_by('-date')
+    user = get_user(request)
+    if user.is_superuser:
+        contacts = Monitorias.objects.all().order_by('-date')
+    else:
+        contacts = Monitorias.objects.filter(
+            owner=user
+        ).order_by('-date')
 
     data = [
-        {'matricula': item.owner.username, 'nome': f"{item.owner.first_name} {item.owner.last_name}", "data": item.date} 
+        {
+            'matricula': item.owner.username, 
+            'nome': f"{item.owner.first_name} {item.owner.last_name}", 
+            "data": item.date, 
+            "status": 'OK' if item.status else ' ' } 
         for item in contacts 
     ]
     paginator = Paginator(data, 10)
@@ -23,20 +32,37 @@ def monitoria(request):
     context = {
         'title': 'Monitoria',
         'data': data,
-        }
+    } if user.is_superuser else {
+        'title': 'Monitoria',
+        'data': data,
+        'monitorias_marcadas_usuario': {
+            item for item in monitorias_marcadas_usuario(user)
+            },
+    }
+    print(context.get('monitorias_marcadas_usuario'))
     url = 'home/monitorias.html'
     return render(request, url, context=context)
 
 @login_required(login_url='home:home')
+def desmarcar_monitoria(request):
+    ...
+
+
+@login_required(login_url='home:home')
+def validar_monitoria(request):
+    ...
+
+
+@login_required(login_url='home:home')
 def marcar_monitoria(request):
     all_weekdays = [
-        'segunda-feira', 
-        'terça-feira', 
-        'quarta-feira', 
-        'quinta-feira', 
-        'sexta-feira', 
-        'sábado', 
-        'domingo'
+        'Segunda-feira', 
+        'Terça-feira', 
+        'Quarta-feira', 
+        'Quinta-feira', 
+        'Sexta-feira', 
+        'Sábado', 
+        'Domingo'
     ]
     today = datetime.today()
     today_str = datetime.strftime(today, '%Y-%m-%d')
@@ -48,12 +74,8 @@ def marcar_monitoria(request):
     
     date_time = datetime.strptime(date, '%Y-%m-%d')
 
-    if date_time < today:
-        message(request, 'Data inválida')
-        return redirect('home:monitorias')
-
-    if date_time > today + timedelta(days=7):
-        message(request, 'escolha entre os próximos 7 dias')
+    if date_time > today + timedelta(days=10) or date_time < today:
+        message(request, 'escolha entre os próximos 10 dias que possuem monitoria')
         return redirect('home:monitorias')
 
     weekday = datetime.weekday(date_time)

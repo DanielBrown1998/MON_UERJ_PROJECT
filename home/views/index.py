@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from home.models import Monitorias
+from django.db.models import Q
 
 daysweek = [
     'Segunda-feira',
@@ -7,6 +9,17 @@ daysweek = [
     'Quinta-feira',
     'Sexta-feira',
 ]
+
+
+def monitorias_marcadas_usuario(user):
+    import datetime
+    from datetime import timedelta, datetime
+    data = Monitorias.objects.filter(
+        Q(owner=user) &
+        Q(date__range=(datetime.now(), datetime.now() + timedelta(days=7)))
+    )
+    return data
+
 
 def message(request, msg: str, sucesss=False, error=False):
     from django.contrib import messages
@@ -37,6 +50,5 @@ def index(request):
         'title': 'HOME',
         'horarios': days(),
     }
-
     url = 'home/index.html'
     return render(request, url, context=context)
