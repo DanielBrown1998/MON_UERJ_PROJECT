@@ -12,7 +12,7 @@ urlpatterns = [
     path('cadastro/', views.cadastro, name='cadastro'),
 
     path('monitorias/', views.monitoria, name='monitorias'),
-    path('monitorias/search/', views.search, name='search'),
+    path('monitorias/search/', views.search_monitoria, name='search'),
 
     #o usuário pode acessar.
     path('update/', views.update, name='update'),
@@ -38,20 +38,20 @@ urlpatterns = [
 
 #TODO: 
 # 1 - disponibilizar o delete da conta do próprio usuário.
-# 11 - add telefone ao campo de updates
-# 12 - add telefone ao campo de cadastro
 
 
 # # 2 - Montar view para expor ao usuário os dias que a monitoria pode ser marcada.
-# 4 - inserir o filtro de dados datetime.now para o search
-# 5 - inserir o filtro de dados datetime.now para o search_monitorias
+# OK 5 - inserir o filtro de dados datetime.now para o search_monitorias
 # OK 6 - retirar o aside para o admin
 # OK 8 - disponibilizar para o usuário somente os dias da semana que ele possui marcação de horario na tabela monitoria;
 # OK 9 - requerer login para a view monitoria
-# 10 - admin não pode marcar monitoria, alterar o aside, mostrar todas as monitoria marcadas para hoje no aside  
+# OK 10 - admin não pode marcar monitoria, alterar o aside, mostrar todas as monitoria marcadas para hoje no aside  
 
 
 # 3 - atualizar o model de DataUser: inserir o atributo monitorias_ausentes
+# 11 - add telefone ao campo de updates
+# 12 - add telefone ao campo de cadastro
+
 # OK 13 - add status ao models Monitorias
 # 14 - add alteração de status para as monitorias do dia e antepassadas
 # 15 - vincular os campos de datauser ao models monitoria

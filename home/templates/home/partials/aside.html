@@ -43,14 +43,27 @@
             <input type="submit" value="marcar" class="btn-send">
         </div>
     </form>
+        {% if not title == 'HOME' %}
+            <p class="legend">Suas Próximas Monitorias:</p>
+            <ul class='flex-column padding'>
+                {% for item in monitorias_marcadas %}
+                <li class="flex-row-info item-padding">
+                    <p>data: {{item}}</p>
+                </li>
+                {% endfor %}
+            </ul>    
+        {% endif %}
+    {% else %} 
+        {% if not title == 'HOME' %}
+            <p class="legend">Monitorias Hoje:</p>
+            <ul class='flex-column padding'>
+                {% for item in monitorias_marcadas %}
+                <li class="flex-row-info item-padding">
+                    <p>data: {{item}}</p>
+                </li>
+                {% endfor %}
+            </ul>    
+        {% endif %}
     {% endif %}
-    <ul class='flex-column padding'>
-        <p class="legend">Monitorias:</p>
-        {% for item in monitorias_marcadas_usuario %}
-            <li class="flex-row-info item-padding">
-            <p>data: {{item}}</p>
-            </li>
-        {% endfor %}
-    </ul>    
 </aside>
 {% endif %}

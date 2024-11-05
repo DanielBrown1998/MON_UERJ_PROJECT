@@ -3,7 +3,7 @@ from home.views.matricula import *
 from home.views.dados import *
 from home.views.index import *
 from home.views.monitoria import *
-from home.views.search import *
+from home.views.search_monitoria import *
 from home.views.update import *
 from home.views.usuarios import *
 from home.views.login import *

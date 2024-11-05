@@ -20,6 +20,13 @@ def monitorias_marcadas_usuario(user):
     )
     return data
 
+def monitorias_marcadas_monitor():
+    import datetime
+    from datetime import timedelta, datetime 
+    data = Monitorias.objects.filter(
+        date__range=(datetime.now(), datetime.now())
+    )
+    return data
 
 def message(request, msg: str, sucesss=False, error=False):
     from django.contrib import messages
